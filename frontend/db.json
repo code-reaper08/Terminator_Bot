@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "firstName": "MORASA CHANDRA",
+      "middleName": "SURYA",
+      "lastName": "PRAKASH",
+      "dob": "2001-09-06",
+      "gender": "male",
+      "martialstatus": "unmarried",
+      "mobileNumber": "9347912856",
+      "email": "morasachandrasuryaprakash@gmail.com",
+      "aadharNumber": "617400311957",
+      "nationality": "india",
+      "address": "GANAPAVARAM RAJUPALEM MANDAL GUNTUR DISTRICT AP",
+      "priorExperience": "0",
+      "location": "Option 1",
+      "password": "Chandra@1234",
+      "confirmPassword": "Chandra@1234",
+      "resume": "1234",
+      "photo": "C:\\CHANDRA\\OneDrive\\Pictures\\CHANDRA.jpg",
+      "userName": "Chandra123",
+      "employeeID": "",
+      "resignation_status": false,
+      "balanceMoney": "",
+      "balanceBenifits": "",
+      "submittedLaptop": "",
+      "submittedMobile": "",
+      "submittedAccess": "",
+      "access_role": "",
+      "id": 1
+    }
+    
+  ],
+  "user":[
+    {
+      "employee_id": "123",
+      "reason": "nothing",
+      "feedback": "great",
+      "appliedDate": "",
+      "requestID": "",
+      "id": 1
+    }
+
+  ],
+  "reset-password":[
+    {
+      "email": "morasachandrasuryaprakash@gmail.com",
+      "id": 1
+    }
+  ]
+}
