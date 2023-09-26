@@ -1,0 +1,14 @@
+.wrapper{
+    height:100vh;
+  }
+  .resignation {
+    width: 400px;           
+    padding: 20px;           
+    height: max-content;     
+    border-radius: 5px;       
+    color: black;           
+    background-color: rgb(255, 255, 255); 
+  }
+  .form-group-left {
+    text-align: left;
+  }
