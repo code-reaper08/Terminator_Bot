@@ -1,0 +1,11 @@
+.register {
+    width: 500px;            
+    padding: 20px;           
+    height: min-content;     
+    border-radius: 10px;     
+    color: black;            
+    background-color: rgb(249, 253, 255); 
+  }
+  .form-group-left {
+    text-align: left;
+  } 
