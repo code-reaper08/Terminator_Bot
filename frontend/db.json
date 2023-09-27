@@ -28,10 +28,68 @@
       "submittedAccess": "",
       "access_role": "",
       "id": 1
+    },
+    {
+      "firstName": "John",
+      "middleName": "J",
+      "lastName": "Doe",
+      "dob": "1953-08-11",
+      "gender": "male",
+      "martialstatus": "unmarried",
+      "mobileNumber": "7867564534",
+      "email": "saivamshim@gmail.com",
+      "aadharNumber": "765487659542",
+      "nationality": "india",
+      "address": "ijsdafijfdsijfdsaijfdsaijfdsaijfdsaijdijoija",
+      "priorExperience": "1",
+      "location": "Option 1",
+      "password": "Jaswanth@123",
+      "confirmPassword": "Jaswanth@123",
+      "resume": "sasdasdads",
+      "photo": "this is my picture link",
+      "userName": "",
+      "employeeID": "",
+      "resignation_status": false,
+      "balanceMoney": "",
+      "balanceBenifits": "",
+      "submittedLaptop": "",
+      "submittedMobile": "",
+      "submittedAccess": "",
+      "access_role": "",
+      "id": 2
+    },
+    {
+      "step": 3,
+      "firstName": "John",
+      "middleName": "J",
+      "lastName": "Doe",
+      "dob": "2023-09-14",
+      "gender": "male",
+      "martialstatus": "unmarried",
+      "mobileNumber": "7867564534",
+      "email": "jaswanth@gmail.com",
+      "aadharNumber": "765487659542",
+      "nationality": "india",
+      "address": "dkjsfdsafdsakmfdsdskjdsafdsalk",
+      "priorExperience": "2",
+      "location": "Chennai",
+      "password": "Jaswanth@123",
+      "confirmPassword": "Jaswanth@123",
+      "resume": "sasdasdads",
+      "photo": "this is my picture link",
+      "userName": "john",
+      "employeeID": "",
+      "resignation_status": false,
+      "balanceMoney": "",
+      "balanceBenifits": "",
+      "submittedLaptop": "",
+      "submittedMobile": "",
+      "submittedAccess": "",
+      "access_role": "",
+      "id": 3
     }
-    
   ],
-  "user":[
+  "user": [
     {
       "employee_id": "123",
       "reason": "nothing",
@@ -40,9 +98,8 @@
       "requestID": "",
       "id": 1
     }
-
   ],
-  "reset-password":[
+  "reset-password": [
     {
       "email": "morasachandrasuryaprakash@gmail.com",
       "id": 1

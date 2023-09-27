@@ -9,7 +9,7 @@ export default function ResetPassword() {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/reset-password', {
+      const response = await axios.post('http://localhost:4000/reset-password', {
         email,
       });
       setMessage(response.data.message);

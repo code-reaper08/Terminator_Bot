@@ -4,7 +4,7 @@ import { useState } from 'react'
 import axios from 'axios';
 import './RegisterSteps.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-export default function Register() {
+export default function RegisterSteps() {
   const [formData, setFormData] = useState({
     step: 1,
     firstName: "",
@@ -151,7 +151,7 @@ export default function Register() {
   const submitForm = async () => {
     if (validateForm()) {
       try {
-        await axios.post("http://localhost:3000/users", formData);
+        await axios.post("http://localhost:4000/users", formData);
         alert("Registered Successfully!!");
         navigate('/login');
       } catch (error) {
@@ -535,7 +535,7 @@ export default function Register() {
     );
   };
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh", backgroundColor: '#5A287D' } }>
+    <div className="d-flex align-items-center justify-content-center p-5" style={{ minHeight: "100vh", backgroundColor: '#5A287D' } }>
       <div className="card">
       <div className="register">
       <div className="card-header card-header-custom">

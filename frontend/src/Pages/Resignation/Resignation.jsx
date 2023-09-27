@@ -32,7 +32,7 @@ export default function Register() {
       return;
     }
     try {
-      await axios.post('http://localhost:3000/user', formData);
+      await axios.post('http://localhost:4000/user', formData);
       alert("Resignation request submitted")
       navigate('/dashboard');
     } catch (error) {

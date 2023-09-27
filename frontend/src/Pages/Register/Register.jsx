@@ -122,7 +122,7 @@ export default function Register() {
             return;
         }
         try {
-            await axios.post('http://localhost:3000/users', formData);
+            await axios.post('http://localhost:4000/users', formData);
             alert('Registered Successfully!!');
             navigate('/login');
         } catch (error) {
