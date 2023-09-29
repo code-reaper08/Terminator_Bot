@@ -4,7 +4,7 @@ import "./Aboutus.css";
 export default function Aboutus() {
   return (
     <div className="container my-5 text-white">
-      <div className="row">
+      <div className="row mb-5">
         <div className="col-md-6">
           <h2>About Our HR Bot</h2>
           <p>
@@ -37,7 +37,7 @@ export default function Aboutus() {
 
       {/* Image Cards */}
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-4 mb-5">
           <div className="card-container">
             <div className="card image-card secondary-bg">
               <img
@@ -55,7 +55,7 @@ export default function Aboutus() {
             </div>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 mb-5">
           <div className="card-container">
             <div className="card image-card secondary-bg">
               <img
