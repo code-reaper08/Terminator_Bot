@@ -38,7 +38,7 @@ export default function Resignation() {
       case 2:
         try {
           // Perform the final submission to the server
-          await axios.post('http://localhost:3000/user', formData);
+          await axios.post('http://localhost:4000/user', formData);
           alert('Resignation request submitted');
           navigate('/dashboard');
         } catch (error) {
