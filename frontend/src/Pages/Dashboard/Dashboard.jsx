@@ -9,6 +9,7 @@ export default function Dashboard() {
   const [showMore, setShowMore] = useState(false);
   const [requestsArr, setRequestsArr] = useState([]);
   const [acceptState, setAcceptState] = useState(false);
+  const [countClick, setCountClick] = useState(0);
 
   const cuur_user = JSON.parse(localStorage.getItem("user"));
 
@@ -26,6 +27,7 @@ export default function Dashboard() {
   };
 
   const handleResign = () => {
+    setCountClick(countClick + 1);
     navigate("/resignation");
   };
 
@@ -244,10 +246,13 @@ export default function Dashboard() {
                   </div>
                 ) : (
                   <button
+                    disabled={countClick !== 1}
                     onClick={handleResign}
                     className="btn btn-primary ternary-bg p-3"
                   >
-                    Apply resignation
+                    {countClick === 1
+                      ? "Apply resignation"
+                      : "You have already applied for resignation, Please wait we'll let you know of further updates"}
                   </button>
                 )}
               </div>

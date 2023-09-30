@@ -166,6 +166,8 @@ export default function Resignation() {
                 </button>
                 <span className="mx-2"></span>
                 <button
+                disabled={formData.employeeID !==
+                  JSON.parse(localStorage.getItem("user")).employeeID}
                   type="submit"
                   className="btn btn-primary"
                   onClick={onSubmit}
