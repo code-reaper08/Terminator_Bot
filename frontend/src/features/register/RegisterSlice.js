@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   users: {},
+  isLoggedin: false
 };
 
 export const registerSlice = createSlice({
@@ -16,11 +17,15 @@ export const registerSlice = createSlice({
     syncWithLocalStorage: (state, action) => {
       state.users = action.payload;
     },
+    setLoginStatus: (state, action) => {
+        state.isLoggedin = action.payload;
+        localStorage.setItem("LoggedIn", JSON.stringify(state.isLoggedin));
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { registerUser, syncWithLocalStorage } = registerSlice.actions;
+export const { registerUser, syncWithLocalStorage, setLoginStatus } = registerSlice.actions;
 
 export const selectUser = (state) => state.register.users;
 

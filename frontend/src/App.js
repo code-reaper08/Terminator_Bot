@@ -5,6 +5,7 @@ import Login from "./Pages/Login/Login";
 import Resignation from "./Pages/Resignation/Resignation";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import Navbar from "./Pages/Navbar";
+import { PrivateRoute } from "./Components/PrivateRoute";
 
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -20,7 +21,15 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />
           <Route exact path={"/resignation"} element={<Resignation />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route
+            exact
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
           <Route exact path="/aboutus" element={<Aboutus />} />
         </Routes>
       </Router>

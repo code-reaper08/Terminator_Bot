@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./RegisterSteps.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   registerUser,
-  selectUser,
   syncWithLocalStorage,
 } from "../../features/register/RegisterSlice";
 
@@ -45,6 +44,15 @@ export default function RegisterSteps() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
+    }
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
 
 
   const nextStep = () => {
