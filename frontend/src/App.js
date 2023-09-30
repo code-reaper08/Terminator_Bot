@@ -8,6 +8,7 @@ import Navbar from "./Pages/Navbar";
 
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Aboutus from "./Pages/AboutUs/Aboutus";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />
           <Route exact path={"/resignation"} element={<Resignation />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/aboutus" element={<Aboutus />} />
         </Routes>
       </Router>
     </div>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import './RegisterSteps.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 export default function RegisterSteps() {
+  
   const [formData, setFormData] = useState({
     step: 1,
     firstName: "",
@@ -293,7 +294,7 @@ export default function RegisterSteps() {
         </div>
         <button
           type="button"
-          className="btn btn-outline-primary"
+          className="btn btn-outline-primary ternary-bg px-5"
           onClick={nextStep}
         >
           Next
@@ -410,7 +411,7 @@ export default function RegisterSteps() {
         <span className="button-space"></span> 
         <button
           type="button"
-          className="btn btn-outline-primary"
+          className="btn btn-outline-primary ternary-bg px-5"
           onClick={nextStep}
         >
           Next
@@ -526,7 +527,7 @@ export default function RegisterSteps() {
         <span className="button-space"></span> 
         <button
           type="button"
-          className="btn btn-outline-primary"
+          className="btn btn-outline-primary ternary-bg px-5"
           onClick={submitForm}
         >
           Submit
