@@ -107,9 +107,6 @@ export default function Login() {
               <button type="submit" className="btn btn-primary w-100">
                 Submit
               </button>
-              <span className="mt-2">
-                Don't have an account yet? <Link to="/">Register here</Link>
-              </span>
             </form>
           </div>
         </div>
