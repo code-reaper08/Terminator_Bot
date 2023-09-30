@@ -40,9 +40,10 @@ export default function RegisterSteps() {
     submittedMobile: "", // [true, false]
     submittedAccess: "", // [true, false]
     access_role: "", //[Employee (1), Manager (2), HR (3)]
-    resignation_approval_count: 0, //keeps track of whether both manager and HR gave approval for it
+    manager_approval_resign: false, //keeps track of whether both manager and HR gave approval for it
+    hr_approval_resign: false,
     line_manager_id: "",
-    bu_HR_id: ""
+    bu_HR_id: "",
   });
   const navigate = useNavigate();
 
@@ -52,11 +53,9 @@ export default function RegisterSteps() {
     if (localStorage.getItem("user")) {
       dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
     }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const nextStep = () => {
     const { step } = formData;
