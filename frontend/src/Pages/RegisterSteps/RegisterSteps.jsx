@@ -1,11 +1,17 @@
-import React from 'react'
-import {  useNavigate } from "react-router-dom";
-import { useState } from 'react'
-import axios from 'axios';
-import './RegisterSteps.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import "./RegisterSteps.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  registerUser,
+  selectUser,
+  syncWithLocalStorage,
+} from "../../features/register/RegisterSlice";
+
 export default function RegisterSteps() {
-  
   const [formData, setFormData] = useState({
     step: 1,
     firstName: "",
@@ -26,7 +32,6 @@ export default function RegisterSteps() {
     resume: "",
     photo: "",
     userName: "",
-
     employeeID: "", // auto  |   Number
     //join two fields [email(4char), Aadhar(4char)] String
     resignation_status: false, // Boolean
@@ -38,6 +43,9 @@ export default function RegisterSteps() {
     access_role: "", //[Employee, Manager, HR]
   });
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
 
   const nextStep = () => {
     const { step } = formData;
@@ -67,17 +75,17 @@ export default function RegisterSteps() {
         return false;
       }
 
-      if (!(/^[0-9]{10}$/.test(formData.mobileNumber)) ) {
+      if (!/^[0-9]{10}$/.test(formData.mobileNumber)) {
         alert("Invalid Mobile Number ");
         return;
       }
 
-      if (!( /^[0-9]{12}$/.test(formData.aadharNumber))) {
+      if (!/^[0-9]{12}$/.test(formData.aadharNumber)) {
         alert("Aadhar Number should conatain 12 digits");
         return;
       }
 
-      if (!(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(formData.email))) {
+      if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(formData.email)) {
         alert("Invalid Email");
         return;
       }
@@ -93,7 +101,7 @@ export default function RegisterSteps() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Validation functions 
+  // Validation functions
   const ValidatePassword = (password) => {
     // Password must be at least 8 characters long
     if (password.length < 8) {
@@ -154,7 +162,8 @@ export default function RegisterSteps() {
       try {
         await axios.post("http://localhost:4000/users", formData);
         alert("Registered Successfully!!");
-        navigate('/login');
+        dispatch(registerUser(formData));
+        navigate("/login");
       } catch (error) {
         console.error("Error:", error);
       }
@@ -164,9 +173,8 @@ export default function RegisterSteps() {
     return (
       <div>
         {/* Render step 1 form fields */}
-        
+
         <div className="mb-3 form-group-left">
-        
           <label htmlFor="Firstname" className="form-label">
             First Name <span className="required-mark">*</span>
           </label>
@@ -300,7 +308,6 @@ export default function RegisterSteps() {
           Next
         </button>
       </div>
-     
     );
   };
   const renderStep2 = () => {
@@ -408,7 +415,7 @@ export default function RegisterSteps() {
         >
           Previous
         </button>
-        <span className="button-space"></span> 
+        <span className="button-space"></span>
         <button
           type="button"
           className="btn btn-outline-primary ternary-bg px-5"
@@ -438,25 +445,25 @@ export default function RegisterSteps() {
           />
         </div>
         {/* Location Preference */}
-        <div className='mb-3 form-group-left'>
-                        <label htmlFor='Location' className='form-label'>
-                            Location<span className='required-mark'>*</span>
-                        </label>
-                        <select
-                            className='form-select'
-                            required
-                            name="location"
-                            value={formData.location}
-                            onChange={handleChange}
-                        >
-                            <option value='' disabled>
-                                Select Location
-                            </option>
-                            <option value='Chennai'>Chennai</option>
-                            <option value='Benguluru'>Benguluru</option>
-                            <option value='Gurugram'>Gurugram</option>
-                        </select>
-                    </div>
+        <div className="mb-3 form-group-left">
+          <label htmlFor="Location" className="form-label">
+            Location<span className="required-mark">*</span>
+          </label>
+          <select
+            className="form-select"
+            required
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+          >
+            <option value="" disabled>
+              Select Location
+            </option>
+            <option value="Chennai">Chennai</option>
+            <option value="Benguluru">Benguluru</option>
+            <option value="Gurugram">Gurugram</option>
+          </select>
+        </div>
         {/* Password */}
         <div className="mb-3 form-group-left">
           <label htmlFor="Password" className="form-label">
@@ -524,7 +531,7 @@ export default function RegisterSteps() {
         >
           Previous
         </button>
-        <span className="button-space"></span> 
+        <span className="button-space"></span>
         <button
           type="button"
           className="btn btn-outline-primary ternary-bg px-5"
@@ -536,20 +543,22 @@ export default function RegisterSteps() {
     );
   };
   return (
-    <div className="d-flex align-items-center justify-content-center p-5" style={{ minHeight: "100vh", backgroundColor: '#5A287D' } }>
+    <div
+      className="d-flex align-items-center justify-content-center p-5"
+      style={{ minHeight: "100vh", backgroundColor: "#5A287D" }}
+    >
       <div className="card">
-      <div className="register">
-      <div className="card-header card-header-custom">
-        <h2 className="text-center"> Registration Form</h2>
+        <div className="register">
+          <div className="card-header card-header-custom">
+            <h2 className="text-center"> Registration Form</h2>
+          </div>
+          <div className="card-body card-body-custom">
+            {formData.step === 1 && renderStep1()}
+            {formData.step === 2 && renderStep2()}
+            {formData.step === 3 && renderStep3()}
+          </div>
         </div>
-        <div className="card-body card-body-custom">
-        {formData.step === 1 && renderStep1()}
-        {formData.step === 2 && renderStep2()}
-        {formData.step === 3 && renderStep3()}
-      
-    </div>
-    </div>
-    </div>
+      </div>
     </div>
   );
 }
