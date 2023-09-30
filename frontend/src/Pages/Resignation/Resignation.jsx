@@ -53,6 +53,9 @@ export default function Resignation() {
             alert("Resignation request submitted");
             navigate("/dashboard");
           }
+          else {
+            alert("Enter correct employee ID!")
+          }
         } catch (error) {
           console.error("Error:", error);
         }
