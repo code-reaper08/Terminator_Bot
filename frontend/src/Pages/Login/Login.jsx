@@ -1,14 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setLoginStatus, syncWithLocalStorage, registerUser } from "../../features/register/RegisterSlice";
 
 export default function Login() {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("LoggedIn")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("LoggedIn"))));
+    }
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
@@ -32,7 +44,10 @@ export default function Login() {
         if (user.password === password) {
           alert("User Login Successfully");
           sessionStorage.setItem("user", JSON.stringify(user));
-          navigate("/resignation");
+          sessionStorage.setItem("LoggedIn", true);
+          dispatch(registerUser(user))
+          dispatch(setLoginStatus(true))
+          navigate("/dashboard");
         } else {
           alert("Please Enter valid credentials");
         }
