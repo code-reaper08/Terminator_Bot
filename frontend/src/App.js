@@ -4,6 +4,7 @@ import RegisterSteps from "./Pages/RegisterSteps/RegisterSteps";
 import Login from "./Pages/Login/Login";
 import Resignation from "./Pages/Resignation/Resignation";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
+import Navbar from "./Pages/Navbar";
 
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -14,7 +15,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<RegisterSteps />} />
+          <Route exact path="/" element={<Navbar />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />
           <Route exact path={"/resignation"} element={<Resignation />} />
