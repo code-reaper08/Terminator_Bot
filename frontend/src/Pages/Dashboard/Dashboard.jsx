@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { syncWithLocalStorage } from "../../features/register/RegisterSlice";
 
 export default function Dashboard() {
   const userData = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +17,7 @@ export default function Dashboard() {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     localStorage.clear();
@@ -137,7 +140,11 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    console.log(requestsArr);
+    if (localStorage.getItem("user")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -226,13 +233,13 @@ export default function Dashboard() {
                     <h2>Status</h2>
                     <p>
                       {cuur_user.manager_approval_resign
-                        ? "Manager Approved Your Resignation request"
-                        : "Manager haven't accepted your request"}
+                        ? "1. Manager Approved Your Resignation request"
+                        : "1. Manager haven't accepted your request"}
                     </p>
                     <p>
                       {cuur_user.hr_approval_resign
-                        ? "HR Approved Your Resignation request"
-                        : "HR haven't accepted your request"}
+                        ? "2. HR Approved Your Resignation request"
+                        : "2. HR haven't accepted your request"}
                     </p>
                   </div>
                 ) : (
