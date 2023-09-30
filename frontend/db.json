@@ -78,7 +78,7 @@
       "resume": "sasdasdads",
       "photo": "this is my picture link",
       "userName": "john2002",
-      "employeeID": "",
+      "employeeID": "246810",
       "resignation_status": false,
       "balanceMoney": "",
       "balanceBenifits": "",
@@ -86,7 +86,8 @@
       "submittedMobile": "",
       "submittedAccess": "",
       "access_role": "3",
-      "id": 3
+      "id": 3,
+      "incoming_approvals": []
     },
     {
       "step": 3,
@@ -108,7 +109,7 @@
       "resume": "sasdasdads",
       "photo": "this is my picture link",
       "userName": "akira2001",
-      "employeeID": "",
+      "employeeID": "12345",
       "resignation_status": false,
       "balanceMoney": "",
       "balanceBenifits": "",
@@ -116,7 +117,8 @@
       "submittedMobile": "",
       "submittedAccess": "",
       "access_role": "2",
-      "id": 4
+      "id": 4,
+      "incoming_approvals": []
     },
     {
       "step": 3,
@@ -138,7 +140,7 @@
       "resume": "sasdasdads",
       "photo": "this is my picture link",
       "userName": "akira2000",
-      "employeeID": "",
+      "employeeID": "123456",
       "resignation_status": false,
       "balanceMoney": "",
       "balanceBenifits": "",
@@ -146,27 +148,13 @@
       "submittedMobile": "",
       "submittedAccess": "",
       "access_role": "1",
-      "id": 5
+      "id": 5,
+      "resignation_approval_count": 0,
+      "line_manager_id": "12345",
+      "bu_HR_id": "246810"
     }
   ],
-  "user": [
-    {
-      "employee_id": "123",
-      "reason": "nothing",
-      "feedback": "great",
-      "appliedDate": "",
-      "requestID": "",
-      "id": 1
-    },
-    {
-      "employeeID": "212121",
-      "reason": "2121212",
-      "feedback": "21212",
-      "appliedDate": "",
-      "requestID": "",
-      "id": 2
-    }
-  ],
+
   "reset-password": [
     {
       "email": "morasachandrasuryaprakash@gmail.com",

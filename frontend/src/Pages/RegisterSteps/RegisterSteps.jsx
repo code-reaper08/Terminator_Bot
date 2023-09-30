@@ -33,13 +33,16 @@ export default function RegisterSteps() {
     userName: "",
     employeeID: "", // auto  |   Number
     //join two fields [email(4char), Aadhar(4char)] String
-    resignation_status: false, // Boolean
+    resignation_status: false, // Boolean (true only when the resignation_approval_count field s 2)
     balanceMoney: "", // [0 to 50000]
     balanceBenifits: "", // [0 to 5000]
     submittedLaptop: "", // [true, false]
     submittedMobile: "", // [true, false]
     submittedAccess: "", // [true, false]
-    access_role: "", //[Employee, Manager, HR]
+    access_role: "", //[Employee (1), Manager (2), HR (3)]
+    resignation_approval_count: 0, //keeps track of whether both manager and HR gave approval for it
+    line_manager_id: "",
+    bu_HR_id: ""
   });
   const navigate = useNavigate();
 
