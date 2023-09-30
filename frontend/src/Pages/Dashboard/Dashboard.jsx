@@ -1,11 +1,16 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Dashboard() {
+  const userData = JSON.parse(localStorage.getItem("user"));
   const [showMore, setShowMore] = useState(false);
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
+
+  useEffect(() => {
+    console.log(userData);
+  }, []);
 
   return (
     <div className="container-fluid">
@@ -80,7 +85,10 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="card-footer text-center">
-                  <button className="btn btn-primary ternary-bg" onClick={toggleShowMore}>
+                  <button
+                    className="btn btn-primary ternary-bg"
+                    onClick={toggleShowMore}
+                  >
                     {showMore ? "See Less" : "See More"}
                   </button>
                 </div>
@@ -91,73 +99,87 @@ export default function Dashboard() {
 
         <div className="col-md-8 d-flex justify-content-center">
           <div className="p-3">
-            {/* <div className="for_employee mt-5">
-              <button className="btn btn-primary ternary-bg p-3">Apply resignation</button>
-            </div> */}
-
-            <div className="for_manager">
-              <div className="container">
-                <h2 className="mb-5">Incoming Approvals</h2>
-                <ul className="list-group">
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> John Doe
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-27 10:30 AM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> Jane Smith
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-26 3:45 PM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                </ul>
+            {userData.access_role === "1" ? (
+              <div className="for_employee mt-5">
+                <button className="btn btn-primary ternary-bg p-3">
+                  Apply resignation
+                </button>
               </div>
-            </div>
+            ) : (
+              <></>
+            )}
 
-            {/* <div className="for_HR">
-              <div className="container">
-                <h2 className="mb-5">Incoming Approvals</h2>
-                <ul className="list-group ">
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> John Doe
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-27 10:30 AM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> Jane Smith
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-26 3:45 PM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                </ul>
+            {userData.access_role === "2" ? (
+              <div className="for_manager">
+                <div className="container">
+                  <h2 className="mb-5">Incoming Approvals</h2>
+                  <ul className="list-group">
+                    <li className="list-group-item mb-5 border-2 secondary-bg">
+                      <p>
+                        <strong>Requester:</strong> John Doe
+                      </p>
+                      <p>
+                        <strong>Requested at:</strong> 2023-09-27 10:30 AM
+                      </p>
+                      <div className="btn-group" role="group">
+                        <button className="btn btn-success">Accept</button>
+                        <button className="btn btn-danger">Reject</button>
+                      </div>
+                    </li>
+                    <li className="list-group-item mb-5 border-2 secondary-bg">
+                      <p>
+                        <strong>Requester:</strong> Jane Smith
+                      </p>
+                      <p>
+                        <strong>Requested at:</strong> 2023-09-26 3:45 PM
+                      </p>
+                      <div className="btn-group" role="group">
+                        <button className="btn btn-success">Accept</button>
+                        <button className="btn btn-danger">Reject</button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div> */}
+            ) : (
+              <></>
+            )}
+
+            {userData.access_role === "3" ? (
+              <div className="for_HR">
+                <div className="container">
+                  <h2 className="mb-5">Incoming Approvals</h2>
+                  <ul className="list-group ">
+                    <li className="list-group-item mb-5 border-2 secondary-bg">
+                      <p>
+                        <strong>Requester:</strong> John Doe
+                      </p>
+                      <p>
+                        <strong>Requested at:</strong> 2023-09-27 10:30 AM
+                      </p>
+                      <div className="btn-group" role="group">
+                        <button className="btn btn-success">Accept</button>
+                        <button className="btn btn-danger">Reject</button>
+                      </div>
+                    </li>
+                    <li className="list-group-item mb-5 border-2 secondary-bg">
+                      <p>
+                        <strong>Requester:</strong> Jane Smith
+                      </p>
+                      <p>
+                        <strong>Requested at:</strong> 2023-09-26 3:45 PM
+                      </p>
+                      <div className="btn-group" role="group">
+                        <button className="btn btn-success">Accept</button>
+                        <button className="btn btn-danger">Reject</button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

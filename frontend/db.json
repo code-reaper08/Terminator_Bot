@@ -77,7 +77,7 @@
       "confirmPassword": "Jaswanth@123",
       "resume": "sasdasdads",
       "photo": "this is my picture link",
-      "userName": "john",
+      "userName": "john2002",
       "employeeID": "",
       "resignation_status": false,
       "balanceMoney": "",
@@ -85,7 +85,7 @@
       "submittedLaptop": "",
       "submittedMobile": "",
       "submittedAccess": "",
-      "access_role": "",
+      "access_role": "3",
       "id": 3
     },
     {
@@ -107,7 +107,7 @@
       "confirmPassword": "Sample@123",
       "resume": "sasdasdads",
       "photo": "this is my picture link",
-      "userName": "",
+      "userName": "akira2001",
       "employeeID": "",
       "resignation_status": false,
       "balanceMoney": "",
@@ -115,7 +115,7 @@
       "submittedLaptop": "",
       "submittedMobile": "",
       "submittedAccess": "",
-      "access_role": "",
+      "access_role": "2",
       "id": 4
     },
     {
