@@ -218,9 +218,14 @@ export default function Bot({ requestsArr }) {
           : "7. Hang tight, we are working on data transfer"}
       </div>
       <div className="mb-5 ternary-bg p-3 rounded">
-        {validForResignation
+        {JSON.parse(localStorage.getItem("AllDone") || cuur_user.resignation_status)
           ? "8. Preparing and migrating data            ✅"
           : "8. Please wait, we'll let you know if anything happens!"}
+      </div>
+      <div className="mb-5 ternary-bg p-3 rounded">
+        {JSON.parse(localStorage.getItem("AllDone") || cuur_user.resignation_status)
+          ? "9. Generating Resignation letter and other documents            ✅"
+          : "9. Please wait, we'll let you know if anything happens!"}
       </div>
     </div>
   );

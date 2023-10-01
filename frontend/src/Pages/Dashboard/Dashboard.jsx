@@ -2,12 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  selectReqID,
-  syncWithLocalStorage,
-} from "../../features/register/RegisterSlice";
+import { syncWithLocalStorage } from "../../features/register/RegisterSlice";
 import Bot from "../TerminatorBot/Bot";
 import FunctionTray from "../../Components/FunctionTray";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const userData = JSON.parse(localStorage.getItem("user"));
@@ -195,7 +193,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid primary-bg-dashboard ">
       <header className="bg-primary text-white p-4">
         <div className="container">
           <h1>Welcome to Your Dashboard</h1>
@@ -209,7 +207,7 @@ export default function Dashboard() {
 
       <div className="row">
         <FunctionTray requestsArr={requestsArr} />
-        <div className="col-md-4 d-flex align-items-center">
+        <div className="col-md-4 d-flex">
           <div className="p-3">
             <div className="container mt-5">
               <div className="card secondary-bg">
