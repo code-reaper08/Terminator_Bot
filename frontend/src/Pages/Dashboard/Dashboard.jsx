@@ -13,7 +13,6 @@ export default function Dashboard() {
   const [requestsArr, setRequestsArr] = useState([]);
   const [acceptState, setAcceptState] = useState(false);
   const [countClick, setCountClick] = useState(0);
-  const [callBot, setCallBot] = useState(false);
 
   const cuur_user = JSON.parse(localStorage.getItem("user"));
 
@@ -23,12 +22,6 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    localStorage.clear();
-    sessionStorage.clear();
-    navigate("/");
-  };
 
   const handleResign = () => {
     setCountClick(countClick + 1);
@@ -168,9 +161,10 @@ export default function Dashboard() {
     fetchAllRequests();
 
     if (JSON.parse(localStorage.getItem("AllDone"))) {
-      console.log("Hello")
+      console.log("Hello");
       deleteRequestEntry();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -196,7 +190,12 @@ export default function Dashboard() {
   return (
     <div className="container-fluid primary-bg-dashboard ">
       <div className="row">
-        <FunctionTray requestsArr={requestsArr} />
+        {JSON.parse(localStorage.getItem("AllDone")) ? (
+          <></>
+        ) : (
+          <FunctionTray requestsArr={requestsArr} />
+        )}
+
         <div className="col-md-4 d-flex">
           <div className="p-3">
             <div className="container mt-5">
@@ -237,7 +236,7 @@ export default function Dashboard() {
                           {cuur_user.aadharNumber}
                         </p>
                         <p>
-                          <strong>User Name:</strong> {cuur_user.username}
+                          <strong>User Name:</strong> {cuur_user.userName}
                         </p>
                         <p>
                           <strong>Employee ID:</strong> {cuur_user.employeeID}
