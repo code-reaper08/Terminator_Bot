@@ -103,6 +103,10 @@ export default function Dashboard() {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    await axios
+      .delete(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     setAcceptState(true);
   };
 
@@ -127,7 +131,10 @@ export default function Dashboard() {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
-    // duplicate issue - axios delete
+    await axios
+      .delete(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     setAcceptState(true);
   };
 
@@ -187,7 +194,7 @@ export default function Dashboard() {
       </header>
 
       <div className="row">
-      <FunctionTray requestsArr={requestsArr} />
+        <FunctionTray requestsArr={requestsArr} />
         <div className="col-md-4 d-flex align-items-center">
           <div className="p-3">
             <div className="container mt-5">
@@ -342,7 +349,7 @@ export default function Dashboard() {
                       } else {
                         return (
                           <div key={eachRequest.id}>
-                           <></>
+                            <></>
                           </div>
                         );
                       }

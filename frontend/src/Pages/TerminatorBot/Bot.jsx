@@ -109,21 +109,21 @@ export default function Bot() {
       desc:
         cuur_user.hr_approval_resign && cuur_user.manager_approval_resign
           ? "Initiating Termination Bot"
-          : "",
+          : "Initiating Termination Bot",
     },
     {
       step: 4,
       desc:
         cuur_user.hr_approval_resign && cuur_user.manager_approval_resign
           ? "Starting the off-boarding process"
-          : "",
+          : "Starting the off-boarding process",
     },
     {
       step: 5,
       desc:
         cuur_user.hr_approval_resign && cuur_user.manager_approval_resign
           ? "Starting the data transfer process, we'll let you know incase anything is missing"
-          : "",
+          : "Starting the data transfer process, we'll let you know incase anything is missing",
     },
     {
       step: 6,
@@ -165,7 +165,7 @@ export default function Bot() {
       {bot_steps.map((eachStep) => {
         return (
           <div>
-            <p key={eachStep.step} className="mb-5 ternary-bg p-3 rounded">
+            <div key={eachStep.step} className="mb-5 ternary-bg p-3 rounded">
               {eachStep.step}. {eachStep.desc}
               {eachStep?.cof ? (
                 <div>
@@ -176,7 +176,7 @@ export default function Bot() {
               ) : (
                 ""
               )}
-            </p>
+            </div>
           </div>
         );
       })}
