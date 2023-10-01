@@ -2,7 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { syncWithLocalStorage } from "../../features/register/RegisterSlice";
+import {
+  selectReqID,
+  syncWithLocalStorage,
+} from "../../features/register/RegisterSlice";
 import Bot from "../TerminatorBot/Bot";
 import FunctionTray from "../../Components/FunctionTray";
 
@@ -165,6 +168,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchAllRequests();
+
+    if (JSON.parse(localStorage.getItem("AllDone"))) {
+      deleteRequestEntry();
+    }
   }, []);
 
   useEffect(() => {
@@ -175,10 +182,17 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   // handleBotInit();
-  //   // console.log(callBot)
-  // }, []);
+  const deleteRequestEntry = async () => {
+    console.log(requestsArr);
+    requestsArr.map(async (each) => {
+      if (each?.employeeID === cuur_user.employeeID) {
+        await axios
+          .delete(`http://localhost:4000/resignation_requests/${each?.id}`)
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+      }
+    });
+  };
 
   return (
     <div className="container-fluid">
@@ -264,7 +278,7 @@ export default function Dashboard() {
                 cuur_user.manager_approval_resign ? (
                   <div>
                     <h2>Status</h2>
-                    <Bot />
+                    <Bot requestsArr={requestsArr} />
                   </div>
                 ) : (
                   <div>

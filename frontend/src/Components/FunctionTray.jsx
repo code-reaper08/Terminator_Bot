@@ -165,7 +165,7 @@ export default function FunctionTray({ requestsArr }) {
       {requestsArr.map((each) => {
         if (each?.employeeID === cuur_user.employeeID) {
           return (
-            <div className="container">
+            <div key={each?.id} className="container">
               <div className="d-flex flex-wrap gap-2">
                 <button
                   onClick={() => handleSL(each?.requester?.id, each?.id)}

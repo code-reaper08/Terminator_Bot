@@ -243,22 +243,21 @@
       "photo": "this is my picture link",
       "userName": "chan4587",
       "employeeID": "768532",
-      "resignation_status": false,
+      "resignation_status": true,
       "balanceMoney": 0,
       "balanceBenifits": 0,
-      "submittedLaptop": false,
-      "submittedMobile": false,
-      "submittedAccess": false,
+      "submittedLaptop": true,
+      "submittedMobile": true,
+      "submittedAccess": true,
       "access_role": "1",
-      "manager_approval_resign": false,
-      "hr_approval_resign": false,
+      "manager_approval_resign": true,
+      "hr_approval_resign": true,
       "line_manager_id": "12345",
       "bu_HR_id": "246810",
       "id": 8
     }
   ],
   "resignation_requests": [],
-  "bot": [],
   "reset-password": [
     {
       "email": "morasachandrasuryaprakash@gmail.com",
