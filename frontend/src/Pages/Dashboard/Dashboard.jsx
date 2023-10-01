@@ -168,6 +168,7 @@ export default function Dashboard() {
     fetchAllRequests();
 
     if (JSON.parse(localStorage.getItem("AllDone"))) {
+      console.log("Hello")
       deleteRequestEntry();
     }
   }, []);
@@ -194,17 +195,6 @@ export default function Dashboard() {
 
   return (
     <div className="container-fluid primary-bg-dashboard ">
-      {/* <header className="bg-primary text-white p-4">
-        <div className="container">
-          <h1>Welcome to Your Dashboard</h1>
-        </div>
-        <div className="container">
-          <button className="btn btn-primary ternary-bg" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      </header> */}
-
       <div className="row">
         <FunctionTray requestsArr={requestsArr} />
         <div className="col-md-4 d-flex">

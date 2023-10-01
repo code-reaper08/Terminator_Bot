@@ -62,7 +62,7 @@ export default function Bot({ requestsArr }) {
   //   };
 
   const copyData = async () => {
-    if (validForResignation && finalUserData) {
+    if (validForResignation || finalUserData) {
       let payload = cuur_user;
       payload.resignation_status = true;
       await axios
@@ -78,6 +78,7 @@ export default function Bot({ requestsArr }) {
         })
         .catch((err) => console.log(err));
       dispatch(setAlldone(true));
+      console.log("I'm running")
       localStorage.setItem("AllDone", JSON.stringify(true));
     }
   };
