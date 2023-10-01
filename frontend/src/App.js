@@ -4,12 +4,12 @@ import RegisterSteps from "./Pages/RegisterSteps/RegisterSteps";
 import Login from "./Pages/Login/Login";
 import Resignation from "./Pages/Resignation/Resignation";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
-import Navbar from "./Components/Navbar";
 import { PrivateRoute } from "./Components/PrivateRoute";
-
+import Navbar from "./Components/Navbar";
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Aboutus from "./Pages/AboutUs/Aboutus";
+import HomePage from "./Pages/HomePage/Home";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Navbar />} />
+          <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/register" element={<RegisterSteps />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />

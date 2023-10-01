@@ -24,6 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "watch": "json-server --watch db.json --port 4000",
+    "watch2": "json-server --watch prevDb.json --port 4001",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { syncWithLocalStorage } from "../../features/register/RegisterSlice";
+import Bot from "../TerminatorBot/Bot";
+import FunctionTray from "../../Components/FunctionTray";
 
 export default function Dashboard() {
   const userData = JSON.parse(localStorage.getItem("user"));
@@ -10,6 +12,7 @@ export default function Dashboard() {
   const [requestsArr, setRequestsArr] = useState([]);
   const [acceptState, setAcceptState] = useState(false);
   const [countClick, setCountClick] = useState(0);
+  const [callBot, setCallBot] = useState(false);
 
   const cuur_user = JSON.parse(localStorage.getItem("user"));
 
@@ -124,6 +127,7 @@ export default function Dashboard() {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    // duplicate issue - axios delete
     setAcceptState(true);
   };
 
@@ -137,6 +141,21 @@ export default function Dashboard() {
       .catch((err) => console.log(err));
   };
 
+  // const handleBotInit = async () => {
+  //   const postBody = {
+  //     requester: cuur_user.employeeID,
+  //     process: [],
+  //   };
+  //   if (userData.hr_approval_resign && userData.manager_approval_resign) {
+  //     setCallBot(true);
+  //     console.log("Running")
+  //     await axios
+  //       .post("http://localhost:4000/bot", postBody)
+  //       .then((res) => console.log(res.data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // };
+
   useEffect(() => {
     fetchAllRequests();
   }, []);
@@ -148,6 +167,11 @@ export default function Dashboard() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // useEffect(() => {
+  //   // handleBotInit();
+  //   // console.log(callBot)
+  // }, []);
 
   return (
     <div className="container-fluid">
@@ -163,6 +187,7 @@ export default function Dashboard() {
       </header>
 
       <div className="row">
+      <FunctionTray requestsArr={requestsArr} />
         <div className="col-md-4 d-flex align-items-center">
           <div className="p-3">
             <div className="container mt-5">
@@ -224,7 +249,6 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-
         <div className="col-md-8 d-flex justify-content-center">
           <div className="p-3">
             {userData.access_role === "1" ? (
@@ -233,27 +257,20 @@ export default function Dashboard() {
                 cuur_user.manager_approval_resign ? (
                   <div>
                     <h2>Status</h2>
-                    <p>
-                      {cuur_user.manager_approval_resign
-                        ? "1. Manager Approved Your Resignation request"
-                        : "1. Manager haven't accepted your request"}
-                    </p>
-                    <p>
-                      {cuur_user.hr_approval_resign
-                        ? "2. HR Approved Your Resignation request"
-                        : "2. HR haven't accepted your request"}
-                    </p>
+                    <Bot />
                   </div>
                 ) : (
-                  <button
-                    disabled={countClick !== 1}
-                    onClick={handleResign}
-                    className="btn btn-primary ternary-bg p-3"
-                  >
-                    {countClick === 1
-                      ? "Apply resignation"
-                      : "You have already applied for resignation, Please wait we'll let you know of further updates"}
-                  </button>
+                  <div>
+                    <button
+                      disabled={countClick === 1}
+                      onClick={handleResign}
+                      className="btn btn-primary ternary-bg p-3"
+                    >
+                      {countClick === 1
+                        ? "You have already applied for resignation, Please wait we'll let you know of further updates"
+                        : "Apply resignation"}
+                    </button>
+                  </div>
                 )}
               </div>
             ) : (
@@ -325,7 +342,7 @@ export default function Dashboard() {
                       } else {
                         return (
                           <div key={eachRequest.id}>
-                            No approvals for today!
+                           <></>
                           </div>
                         );
                       }
@@ -402,7 +419,7 @@ export default function Dashboard() {
                       } else {
                         return (
                           <div key={eachRequest.id}>
-                            No Approvals for today!
+                            <></>
                           </div>
                         );
                       }
