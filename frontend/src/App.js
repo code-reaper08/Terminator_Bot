@@ -4,8 +4,9 @@ import RegisterSteps from "./Pages/RegisterSteps/RegisterSteps";
 import Login from "./Pages/Login/Login";
 import Resignation from "./Pages/Resignation/Resignation";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
-import HomePage from "./Pages/HomePage/Navbar";
+import Navbar from "./Components/Navbar";
 import { PrivateRoute } from "./Components/PrivateRoute";
+
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Aboutus from "./Pages/AboutUs/Aboutus";
@@ -20,7 +21,15 @@ function App() {
           <Route exact path="/register" element={<RegisterSteps />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />
-          <Route exact path={"/resignation"} element={<Resignation />} />
+          <Route
+            exact
+            path={"/resignation"}
+            element={
+              <PrivateRoute>
+                <Resignation />
+              </PrivateRoute>
+            }
+          />
           <Route
             exact
             path="/dashboard"

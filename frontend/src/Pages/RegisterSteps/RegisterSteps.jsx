@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./RegisterSteps.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   registerUser,
-  selectUser,
   syncWithLocalStorage,
 } from "../../features/register/RegisterSlice";
 
@@ -34,18 +33,50 @@ export default function RegisterSteps() {
     userName: "",
     employeeID: "", // auto  |   Number
     //join two fields [email(4char), Aadhar(4char)] String
-    resignation_status: false, // Boolean
-    balanceMoney: "", // [0 to 50000]
-    balanceBenifits: "", // [0 to 5000]
-    submittedLaptop: "", // [true, false]
-    submittedMobile: "", // [true, false]
-    submittedAccess: "", // [true, false]
-    access_role: "", //[Employee, Manager, HR]
+    resignation_status: false, // Boolean (true only when the resignation_approval_count field s 2)
+    balanceMoney: 0, // [0 to 50000]
+    balanceBenifits: 0, // [0 to 5000]
+    submittedLaptop: false, // [true, false]
+    submittedMobile: false, // [true, false]
+    submittedAccess: false, // [true, false]
+    access_role: "1", //[Employee (1), Manager (2), HR (3)]
+    manager_approval_resign: false, //keeps track of whether both manager and HR gave approval for it
+    hr_approval_resign: false,
+
+    // temp assign the below manager and HR
+    line_manager_id: "12345",
+    bu_HR_id: "246810",
   });
+
+  const generateUsername = (emailID, aadharNumber) => {
+    if (emailID.length < 4 || aadharNumber.length < 4) {
+      return "Invalid input";
+    }
+    const emailPrefix = emailID.slice(0, 4);
+    const aadharPrefix = aadharNumber.slice(0, 4);
+    const username = emailPrefix + aadharPrefix;
+    return username;
+  };
+
+  const generateEmployeeID = () => {
+    const min = 100000;
+    const max = 999999;
+    let result = Math.floor(Math.random() * (max - min + 1)) + min;
+    result = result.toString();
+    return result;
+  };
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const nextStep = () => {
     const { step } = formData;
@@ -160,6 +191,11 @@ export default function RegisterSteps() {
   const submitForm = async () => {
     if (validateForm()) {
       try {
+        formData.userName = generateUsername(
+          formData.email,
+          formData.aadharNumber
+        );
+        formData.employeeID = generateEmployeeID();
         await axios.post("http://localhost:4000/users", formData);
         alert("Registered Successfully!!");
         dispatch(registerUser(formData));

@@ -1,17 +1,164 @@
-import React, {useState} from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { syncWithLocalStorage } from "../../features/register/RegisterSlice";
 
 export default function Dashboard() {
+  const userData = JSON.parse(localStorage.getItem("user"));
   const [showMore, setShowMore] = useState(false);
+  const [requestsArr, setRequestsArr] = useState([]);
+  const [acceptState, setAcceptState] = useState(false);
+  const [countClick, setCountClick] = useState(0);
+
+  const cuur_user = JSON.parse(localStorage.getItem("user"));
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/");
+  };
+
+  const handleResign = () => {
+    setCountClick(countClick + 1);
+    navigate("/resignation");
+  };
+
+  // FOR MANAGER - [ACCEPT]
+  const handleApprovalAccept = async (requester_id, request_id) => {
+    let result = {};
+    let request = {};
+    await axios
+      .get(`http://localhost:4000/users/${requester_id}`)
+      .then((res) => (result = res.data));
+    await axios
+      .get(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => {
+        request = res.data;
+        console.log(res.data);
+      });
+
+    result.manager_approval_resign = true;
+    request.requester.manager_approval_resign = true;
+    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
+    await axios.put(
+      `http://localhost:4000/resignation_requests/${request_id}`,
+      request
+    );
+    setAcceptState(true);
+  };
+
+  // FOR HR - [ACCEPT]
+  const handleApprovalAcceptHR = async (requester_id, request_id) => {
+    let result = {};
+    let request = {};
+    await axios
+      .get(`http://localhost:4000/users/${requester_id}`)
+      .then((res) => (result = res.data));
+    await axios
+      .get(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => {
+        request = res.data;
+        console.log(res.data);
+      });
+
+    result.hr_approval_resign = true;
+    request.requester.hr_approval_resign = true;
+    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
+    await axios.put(
+      `http://localhost:4000/resignation_requests/${request_id}`,
+      request
+    );
+    setAcceptState(true);
+  };
+
+  // FOR MANAGER - [REJECT]
+  const handleApprovalReject = async (requester_id, request_id) => {
+    let result = {};
+    let request = {};
+    await axios
+      .get(`http://localhost:4000/users/${requester_id}`)
+      .then((res) => (result = res.data));
+    await axios
+      .get(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => {
+        request = res.data;
+        console.log(res.data);
+      });
+
+    result.manager_approval_resign = false;
+    request.requester.manager_approval_resign = false;
+    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
+    await axios.put(
+      `http://localhost:4000/resignation_requests/${request_id}`,
+      request
+    );
+    setAcceptState(true);
+  };
+
+  // FOR HR - [REJECT]
+  const handleApprovalRejectHR = async (requester_id, request_id) => {
+    let result = {};
+    let request = {};
+    await axios
+      .get(`http://localhost:4000/users/${requester_id}`)
+      .then((res) => (result = res.data));
+    await axios
+      .get(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => {
+        request = res.data;
+        console.log(res.data);
+      });
+
+    result.hr_approval_resign = false;
+    request.requester.hr_approval_resign = false;
+    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
+    await axios.put(
+      `http://localhost:4000/resignation_requests/${request_id}`,
+      request
+    );
+    setAcceptState(true);
+  };
+
+  const fetchAllRequests = async () => {
+    await axios
+      .get("http://localhost:4000/resignation_requests")
+      .then((res) => {
+        console.log(res.data);
+        setRequestsArr(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchAllRequests();
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="container-fluid">
       <header className="bg-primary text-white p-4">
         <div className="container">
           <h1>Welcome to Your Dashboard</h1>
+        </div>
+        <div className="container">
+          <button className="btn btn-primary ternary-bg" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </header>
 
@@ -27,60 +174,49 @@ export default function Dashboard() {
                   <div className="row">
                     <div className="col-md-6">
                       <p>
-                        <strong>First Name:</strong> John
+                        <strong>First Name:</strong> {cuur_user.firstName}
                       </p>
                       <p>
-                        <strong>Middle Name:</strong> J
+                        <strong>Middle Name:</strong> {cuur_user.middleName}
                       </p>
                       <p>
-                        <strong>Last Name:</strong> Doe
+                        <strong>Last Name:</strong> {cuur_user.lastName}
                       </p>
                       <p>
-                        <strong>Date of Birth:</strong> 2023-09-14
+                        <strong>Date of Birth:</strong> {cuur_user.dob}
                       </p>
                     </div>
                     {showMore && (
                       <div className="col-md-6">
                         <p>
-                          <strong>Gender:</strong> Male
+                          <strong>Gender:</strong> {cuur_user.gender}
                         </p>
                         <p>
-                          <strong>Marital Status:</strong> Unmarried
+                          <strong>Mobile Number:</strong>{" "}
+                          {cuur_user.mobileNumber}
                         </p>
                         <p>
-                          <strong>Mobile Number:</strong> 7867564534
+                          <strong>Email:</strong> {cuur_user.email}
                         </p>
                         <p>
-                          <strong>Email:</strong> jaswanth@gmail.com
+                          <strong>Aadhar Number:</strong>{" "}
+                          {cuur_user.aadharNumber}
                         </p>
                         <p>
-                          <strong>Aadhar Number:</strong> 765487659542
+                          <strong>User Name:</strong> {cuur_user.username}
                         </p>
                         <p>
-                          <strong>Nationality:</strong> India
-                        </p>
-                        <p>
-                          <strong>Address:</strong>{" "}
-                          dkjsfdsafdsakmfdsdskjdsafdsalk
-                        </p>
-                        <p>
-                          <strong>Prior Experience:</strong> 2
-                        </p>
-                        <p>
-                          <strong>Location:</strong> Chennai
-                        </p>
-                        <p>
-                          <strong>User Name:</strong> john
-                        </p>
-                        <p>
-                          <strong>Employee ID:</strong> 8766565
+                          <strong>Employee ID:</strong> {cuur_user.employeeID}
                         </p>
                       </div>
                     )}
                   </div>
                 </div>
                 <div className="card-footer text-center">
-                  <button className="btn btn-primary ternary-bg" onClick={toggleShowMore}>
+                  <button
+                    className="btn btn-primary ternary-bg"
+                    onClick={toggleShowMore}
+                  >
                     {showMore ? "See Less" : "See More"}
                   </button>
                 </div>
@@ -91,73 +227,192 @@ export default function Dashboard() {
 
         <div className="col-md-8 d-flex justify-content-center">
           <div className="p-3">
-            {/* <div className="for_employee mt-5">
-              <button className="btn btn-primary ternary-bg p-3">Apply resignation</button>
-            </div> */}
-
-            <div className="for_manager">
-              <div className="container">
-                <h2 className="mb-5">Incoming Approvals</h2>
-                <ul className="list-group">
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
+            {userData.access_role === "1" ? (
+              <div className="for_employee mt-5">
+                {cuur_user.hr_approval_resign ||
+                cuur_user.manager_approval_resign ? (
+                  <div>
+                    <h2>Status</h2>
                     <p>
-                      <strong>Requester:</strong> John Doe
+                      {cuur_user.manager_approval_resign
+                        ? "1. Manager Approved Your Resignation request"
+                        : "1. Manager haven't accepted your request"}
                     </p>
                     <p>
-                      <strong>Requested at:</strong> 2023-09-27 10:30 AM
+                      {cuur_user.hr_approval_resign
+                        ? "2. HR Approved Your Resignation request"
+                        : "2. HR haven't accepted your request"}
                     </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> Jane Smith
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-26 3:45 PM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                </ul>
+                  </div>
+                ) : (
+                  <button
+                    disabled={countClick !== 1}
+                    onClick={handleResign}
+                    className="btn btn-primary ternary-bg p-3"
+                  >
+                    {countClick === 1
+                      ? "Apply resignation"
+                      : "You have already applied for resignation, Please wait we'll let you know of further updates"}
+                  </button>
+                )}
               </div>
-            </div>
+            ) : (
+              <></>
+            )}
 
-            {/* <div className="for_HR">
-              <div className="container">
-                <h2 className="mb-5">Incoming Approvals</h2>
-                <ul className="list-group ">
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> John Doe
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-27 10:30 AM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                  <li className="list-group-item mb-5 border-2 secondary-bg">
-                    <p>
-                      <strong>Requester:</strong> Jane Smith
-                    </p>
-                    <p>
-                      <strong>Requested at:</strong> 2023-09-26 3:45 PM
-                    </p>
-                    <div className="btn-group" role="group">
-                      <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-danger">Reject</button>
-                    </div>
-                  </li>
-                </ul>
+            {userData.access_role === "2" ? (
+              <div className="for_manager">
+                <div className="container">
+                  <h2 className="mb-5">Incoming Approvals</h2>
+                  <p>
+                    {requestsArr.length === 0
+                      ? "No approvals Incoming for today!"
+                      : ""}
+                  </p>
+                  <ul className="list-group">
+                    {requestsArr?.map((eachRequest) => {
+                      if (
+                        cuur_user.employeeID ===
+                          eachRequest?.requester?.line_manager_id &&
+                        !acceptState &&
+                        !eachRequest?.requester?.manager_approval_resign
+                      ) {
+                        return (
+                          <li
+                            key={eachRequest?.id}
+                            className="list-group-item mb-5 border-2 secondary-bg"
+                          >
+                            <p>
+                              <strong>Requester:</strong>{" "}
+                              {eachRequest?.requester?.firstName +
+                                " " +
+                                eachRequest?.requester?.lastName}
+                            </p>
+                            <p>
+                              <strong>Employee ID:</strong>{" "}
+                              {eachRequest?.requester?.employeeID}
+                            </p>
+                            <p>
+                              <strong>Requested at:</strong>{" "}
+                              {eachRequest?.timestamp}
+                            </p>
+                            <div className="btn-group" role="group">
+                              <button
+                                onClick={() =>
+                                  handleApprovalAccept(
+                                    eachRequest?.requester?.id,
+                                    eachRequest?.id
+                                  )
+                                }
+                                className="btn btn-success"
+                              >
+                                Accept
+                              </button>
+                              <button
+                                onClick={() =>
+                                  handleApprovalReject(
+                                    eachRequest?.requester?.id,
+                                    eachRequest?.id
+                                  )
+                                }
+                                className="btn btn-danger"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          </li>
+                        );
+                      } else {
+                        return (
+                          <div key={eachRequest.id}>
+                            No approvals for today!
+                          </div>
+                        );
+                      }
+                    })}
+                  </ul>
+                </div>
               </div>
-            </div> */}
+            ) : (
+              <></>
+            )}
+
+            {userData.access_role === "3" ? (
+              <div className="for_HR">
+                <div className="container">
+                  <h2 className="mb-5">Incoming Approvals</h2>
+                  <p>
+                    {requestsArr.length === 0
+                      ? "No approvals Incoming for today!"
+                      : ""}
+                  </p>
+                  <ul className="list-group">
+                    {requestsArr?.map((eachRequest) => {
+                      if (
+                        cuur_user.employeeID ===
+                          eachRequest?.requester?.bu_HR_id &&
+                        !acceptState &&
+                        !eachRequest?.requester?.hr_approval_resign
+                      ) {
+                        return (
+                          <li
+                            key={eachRequest?.id}
+                            className="list-group-item mb-5 border-2 secondary-bg"
+                          >
+                            <p>
+                              <strong>Requester:</strong>{" "}
+                              {eachRequest?.requester?.firstName +
+                                " " +
+                                eachRequest?.requester?.lastName}
+                            </p>
+                            <p>
+                              <strong>Employee ID:</strong>{" "}
+                              {eachRequest?.requester?.employeeID}
+                            </p>
+                            <p>
+                              <strong>Requested at:</strong>{" "}
+                              {eachRequest?.timestamp}
+                            </p>
+                            <div className="btn-group" role="group">
+                              <button
+                                onClick={() =>
+                                  handleApprovalAcceptHR(
+                                    eachRequest?.requester?.id,
+                                    eachRequest?.id
+                                  )
+                                }
+                                className="btn btn-success"
+                              >
+                                Accept
+                              </button>
+                              <button
+                                onClick={() =>
+                                  handleApprovalRejectHR(
+                                    eachRequest?.requester?.id,
+                                    eachRequest?.id
+                                  )
+                                }
+                                className="btn btn-danger"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          </li>
+                        );
+                      } else {
+                        return (
+                          <div key={eachRequest.id}>
+                            No Approvals for today!
+                          </div>
+                        );
+                      }
+                    })}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

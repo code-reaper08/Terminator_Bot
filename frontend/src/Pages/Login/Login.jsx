@@ -1,14 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setLoginStatus, syncWithLocalStorage, registerUser } from "../../features/register/RegisterSlice";
 
 export default function Login() {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
+    }
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
@@ -32,7 +44,10 @@ export default function Login() {
         if (user.password === password) {
           alert("User Login Successfully");
           sessionStorage.setItem("user", JSON.stringify(user));
-          navigate("/resignation");
+          sessionStorage.setItem("LoggedIn", true);
+          dispatch(registerUser(user))
+          dispatch(setLoginStatus(true))
+          navigate("/dashboard");
         } else {
           alert("Please Enter valid credentials");
         }
@@ -92,9 +107,6 @@ export default function Login() {
               <button type="submit" className="btn btn-primary w-100">
                 Submit
               </button>
-              <span className="mt-2">
-                Don't have an account yet? <Link to="/">Register here</Link>
-              </span>
             </form>
           </div>
         </div>
