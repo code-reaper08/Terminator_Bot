@@ -160,8 +160,7 @@ export default function Dashboard() {
   useEffect(() => {
     fetchAllRequests();
 
-    if (JSON.parse(localStorage.getItem("AllDone"))) {
-      console.log("Hello");
+    if (JSON.parse(localStorage.getItem("AllDone")) === true || cuur_user.resignation_status === true) {
       deleteRequestEntry();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -190,11 +189,13 @@ export default function Dashboard() {
   return (
     <div className="container-fluid primary-bg-dashboard ">
       <div className="row">
-        {JSON.parse(localStorage.getItem("AllDone")) ? (
-          <></>
-        ) : (
+        <FunctionTray requestsArr={requestsArr} />
+        {/* {JSON.parse(localStorage.getItem("AllDone") === false) ? (
           <FunctionTray requestsArr={requestsArr} />
-        )}
+        ) : (
+          <></>
+        )} */}
+        {/* {JSON.parse(localStorage.getItem("AllDone") === true) ? <></> : ""} */}
 
         <div className="col-md-4 d-flex">
           <div className="p-3">

@@ -25,7 +25,6 @@ export const registerSlice = createSlice({
     },
     setAlldone: (state, action) => {
       state.alldone = action.payload;
-      localStorage.setItem("AllDone", JSON.stringify(state.alldone));
       console.log(action.payload);
     },
     setReqID: (state, action) => {

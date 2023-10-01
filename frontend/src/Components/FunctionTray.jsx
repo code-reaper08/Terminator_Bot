@@ -34,6 +34,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleSM = async (requester_id, request_id) => {
@@ -62,6 +63,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleAC = async (requester_id, request_id) => {
@@ -90,6 +92,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleMoney = async (requester_id, request_id) => {
@@ -118,6 +121,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleBenifits = async (requester_id, request_id) => {
@@ -146,6 +150,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   useEffect(() => {

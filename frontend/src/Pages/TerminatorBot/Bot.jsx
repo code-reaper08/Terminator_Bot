@@ -63,25 +63,52 @@ export default function Bot({ requestsArr }) {
   //   };
 
   const copyData = async () => {
-    if (validForResignation || finalUserData) {
-      let payload = cuur_user;
-      payload.resignation_status = true;
-      await axios
-        .post("http://localhost:4001/previous_users", payload)
-        .then(async (res) => {
-          console.log(res);
-          await axios
-            .put(`http://localhost:4000/users/${cuur_user.id}`, payload)
-            .then(async (res) => {
-              console.log(res);
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) => console.log(err));
-      dispatch(setAlldone(true));
-      console.log("I'm running");
+    // if (validForResignation === true) {
+    let payload = cuur_user;
+    payload.resignation_status = true;
+    await axios
+      .post("http://localhost:4001/previous_users", payload)
+      .then(async (res) => {
+        console.log(res);
+        await axios
+          .put(`http://localhost:4000/users/${cuur_user.id}`, payload)
+          .then(async (res) => {
+            console.log(res);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+    dispatch(setAlldone(true));
+    console.log("I'm running");
+    // if (
+    //   (!validForResignation &&
+    //     balanceMoneyMsg ===
+    //       "Please pay the balance money you owe          🟢") ||
+    //   balanceBenifitsMsg ===
+    //     "Please surrender and make your benifits scheme clear           🟢" ||
+    //   submittedLaptopMsg ===
+    //     "Please surrender your company laptop           🟢" ||
+    //   submittedMobileMsg ===
+    //     "Please surrender your company mobile           🟢" ||
+    //   submittedAccessMsg ===
+    //     "Please place a request to surrender your access card           🟢"
+    // ) {
+    //   localStorage.setItem("AllDone", JSON.stringify(false));
+    // }
+
+    if (
+      validForResignation &&
+      balanceMoney === 0 &&
+      balanceBenifits === 0 &&
+      submittedLaptop &&
+      submittedAccess &&
+      submittedMobile
+    ) {
       localStorage.setItem("AllDone", JSON.stringify(true));
+    }else {
+      localStorage.setItem("AllDone", JSON.stringify(false));
     }
+    // }
   };
 
   useEffect(() => {
@@ -221,15 +248,19 @@ export default function Bot({ requestsArr }) {
           : "7. Hang tight, we are working on data transfer"}
       </div>
       <div className="mb-5 ternary-bg p-3 rounded">
-        {JSON.parse(
-          localStorage.getItem("AllDone") || cuur_user.resignation_status
+        {validForResignation === true &&
+        JSON.parse(
+          localStorage.getItem("AllDone") === "true" ||
+            cuur_user.resignation_status
         )
           ? "8. Preparing and migrating data            ✅"
           : "8. Please wait, we'll let you know if anything happens!"}
       </div>
       <div className="mb-5 ternary-bg p-3 rounded">
-        {JSON.parse(
-          localStorage.getItem("AllDone") || cuur_user.resignation_status
+        {validForResignation === true &&
+        JSON.parse(
+          localStorage.getItem("AllDone") === "true" ||
+            cuur_user.resignation_status
         )
           ? "9. Generating Resignation letter and other documents            ✅"
           : "9. Please wait, we'll let you know if anything happens!"}
