@@ -10,13 +10,14 @@ import { PrivateRoute } from "./Components/PrivateRoute";
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Aboutus from "./Pages/AboutUs/Aboutus";
-
+import Home from "./Pages/HomePage/Home";
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Navbar />} />
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/home" element={<Home/>} />
           <Route exact path="/register" element={<RegisterSteps />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />
