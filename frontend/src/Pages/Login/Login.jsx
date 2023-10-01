@@ -14,8 +14,8 @@ export default function Login() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem("LoggedIn")) {
-      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("LoggedIn"))));
+    if (localStorage.getItem("user")) {
+      dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
     }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,9 +107,6 @@ export default function Login() {
               <button type="submit" className="btn btn-primary w-100">
                 Submit
               </button>
-              <span className="mt-2">
-                Don't have an account yet? <Link to="/">Register here</Link>
-              </span>
             </form>
           </div>
         </div>
