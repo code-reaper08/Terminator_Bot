@@ -194,7 +194,7 @@ export default function Dashboard() {
 
   return (
     <div className="container-fluid primary-bg-dashboard ">
-      <header className="bg-primary text-white p-4">
+      {/* <header className="bg-primary text-white p-4">
         <div className="container">
           <h1>Welcome to Your Dashboard</h1>
         </div>
@@ -203,7 +203,7 @@ export default function Dashboard() {
             Logout
           </button>
         </div>
-      </header>
+      </header> */}
 
       <div className="row">
         <FunctionTray requestsArr={requestsArr} />
