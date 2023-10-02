@@ -64,40 +64,8 @@ export default function Bot({ requestsArr }) {
 
   const copyData = async () => {
     // if (validForResignation === true) {
-    let payload = cuur_user;
-    payload.resignation_status = true;
-    await axios
-      .post("http://localhost:4001/previous_users", payload)
-      .then(async (res) => {
-        console.log(res);
-        await axios
-          .put(`http://localhost:4000/users/${cuur_user.id}`, payload)
-          .then(async (res) => {
-            console.log(res);
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-    dispatch(setAlldone(true));
-    console.log("I'm running");
-    // if (
-    //   (!validForResignation &&
-    //     balanceMoneyMsg ===
-    //       "Please pay the balance money you owe          🟢") ||
-    //   balanceBenifitsMsg ===
-    //     "Please surrender and make your benifits scheme clear           🟢" ||
-    //   submittedLaptopMsg ===
-    //     "Please surrender your company laptop           🟢" ||
-    //   submittedMobileMsg ===
-    //     "Please surrender your company mobile           🟢" ||
-    //   submittedAccessMsg ===
-    //     "Please place a request to surrender your access card           🟢"
-    // ) {
-    //   localStorage.setItem("AllDone", JSON.stringify(false));
-    // }
-
     if (
-      validForResignation &&
+      // validForResignation &&
       balanceMoney === 0 &&
       balanceBenifits === 0 &&
       submittedLaptop &&
@@ -105,10 +73,44 @@ export default function Bot({ requestsArr }) {
       submittedMobile
     ) {
       localStorage.setItem("AllDone", JSON.stringify(true));
-    }else {
+      console.log("Setting the ALl done to True");
+      console.log(
+        validForResignation,
+        balanceMoney,
+        balanceBenifits,
+        submittedLaptop,
+        submittedAccess,
+        submittedMobile
+      );
+      let payload = cuur_user;
+      payload.resignation_status = true;
+      await axios
+        .post("http://localhost:4001/previous_users", payload)
+        .then(async (res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+
+      await axios
+        .put(`http://localhost:4000/users/${cuur_user.id}`, payload)
+        .then(async (res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+      dispatch(setAlldone(true));
+      console.log("I'm running");
+    } else {
       localStorage.setItem("AllDone", JSON.stringify(false));
+      console.log("Setting the ALl done to False");
+      console.log(
+        validForResignation,
+        balanceMoney,
+        balanceBenifits,
+        submittedLaptop,
+        submittedAccess,
+        submittedMobile
+      );
     }
-    // }
   };
 
   useEffect(() => {
@@ -143,12 +145,12 @@ export default function Bot({ requestsArr }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    balanceBenifits,
-    balanceMoney,
-    submittedAccess,
-    submittedLaptop,
-    submittedMobile,
-    cuur_user,
+    // balanceBenifits,
+    // balanceMoney,
+    // submittedAccess,
+    // submittedLaptop,
+    // submittedMobile,
+    // cuur_user,
   ]);
 
   const bot_steps = [

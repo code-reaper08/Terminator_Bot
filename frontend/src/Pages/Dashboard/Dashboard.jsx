@@ -162,6 +162,7 @@ export default function Dashboard() {
 
     if (JSON.parse(localStorage.getItem("AllDone")) === true || cuur_user.resignation_status === true) {
       deleteRequestEntry();
+      console.log("Deleting request")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -177,6 +178,7 @@ export default function Dashboard() {
   const deleteRequestEntry = async () => {
     console.log(requestsArr);
     requestsArr.map(async (each) => {
+      console.log("Each", each)
       if (each?.employeeID === cuur_user.employeeID) {
         await axios
           .delete(`http://localhost:4000/resignation_requests/${each?.id}`)
@@ -260,7 +262,7 @@ export default function Dashboard() {
         </div>
         <div className="col-md-8 d-flex justify-content-center">
           <div className="p-3">
-            {userData.access_role === "1" ? (
+            {userData.access_role === "1" || userData.access_role === "2" || userData.access_role === "3" ? (
               <div className="for_employee mt-5">
                 {cuur_user.hr_approval_resign ||
                 cuur_user.manager_approval_resign ? (
@@ -289,7 +291,7 @@ export default function Dashboard() {
             {userData.access_role === "2" ? (
               <div className="for_manager">
                 <div className="container">
-                  <h2 className="mb-5">Incoming Approvals</h2>
+                  <h2 className="mb-5 mt-5">Incoming Approvals</h2>
                   <p>
                     {requestsArr.length === 0
                       ? "No approvals Incoming for today!"
@@ -366,7 +368,7 @@ export default function Dashboard() {
             {userData.access_role === "3" ? (
               <div className="for_HR">
                 <div className="container">
-                  <h2 className="mb-5">Incoming Approvals</h2>
+                  <h2 className="mb-5 mt-5">Incoming Approvals</h2>
                   <p>
                     {requestsArr.length === 0
                       ? "No approvals Incoming for today!"
