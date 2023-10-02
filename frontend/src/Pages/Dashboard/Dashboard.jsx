@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { syncWithLocalStorage } from "../../features/register/RegisterSlice";
 import Bot from "../TerminatorBot/Bot";
 import FunctionTray from "../../Components/FunctionTray";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const userData = JSON.parse(localStorage.getItem("user"));
@@ -12,7 +13,6 @@ export default function Dashboard() {
   const [requestsArr, setRequestsArr] = useState([]);
   const [acceptState, setAcceptState] = useState(false);
   const [countClick, setCountClick] = useState(0);
-  const [callBot, setCallBot] = useState(false);
 
   const cuur_user = JSON.parse(localStorage.getItem("user"));
 
@@ -22,12 +22,6 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    localStorage.clear();
-    sessionStorage.clear();
-    navigate("/");
-  };
 
   const handleResign = () => {
     setCountClick(countClick + 1);
@@ -103,6 +97,10 @@ export default function Dashboard() {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    await axios
+      .delete(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     setAcceptState(true);
   };
 
@@ -127,7 +125,10 @@ export default function Dashboard() {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
-    // duplicate issue - axios delete
+    await axios
+      .delete(`http://localhost:4000/resignation_requests/${request_id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     setAcceptState(true);
   };
 
@@ -158,6 +159,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchAllRequests();
+
+    if (JSON.parse(localStorage.getItem("AllDone")) === true || cuur_user.resignation_status === true) {
+      deleteRequestEntry();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -168,27 +174,30 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   // handleBotInit();
-  //   // console.log(callBot)
-  // }, []);
+  const deleteRequestEntry = async () => {
+    console.log(requestsArr);
+    requestsArr.map(async (each) => {
+      if (each?.employeeID === cuur_user.employeeID) {
+        await axios
+          .delete(`http://localhost:4000/resignation_requests/${each?.id}`)
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+      }
+    });
+  };
 
   return (
-    <div className="container-fluid">
-      <header className="bg-primary text-white p-4">
-        <div className="container">
-          <h1>Welcome to Your Dashboard</h1>
-        </div>
-        <div className="container">
-          <button className="btn btn-primary ternary-bg" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      </header>
-
+    <div className="container-fluid primary-bg-dashboard ">
       <div className="row">
-      <FunctionTray requestsArr={requestsArr} />
-        <div className="col-md-4 d-flex align-items-center">
+        <FunctionTray requestsArr={requestsArr} />
+        {/* {JSON.parse(localStorage.getItem("AllDone") === false) ? (
+          <FunctionTray requestsArr={requestsArr} />
+        ) : (
+          <></>
+        )} */}
+        {/* {JSON.parse(localStorage.getItem("AllDone") === true) ? <></> : ""} */}
+
+        <div className="col-md-4 d-flex">
           <div className="p-3">
             <div className="container mt-5">
               <div className="card secondary-bg">
@@ -228,7 +237,7 @@ export default function Dashboard() {
                           {cuur_user.aadharNumber}
                         </p>
                         <p>
-                          <strong>User Name:</strong> {cuur_user.username}
+                          <strong>User Name:</strong> {cuur_user.userName}
                         </p>
                         <p>
                           <strong>Employee ID:</strong> {cuur_user.employeeID}
@@ -257,7 +266,7 @@ export default function Dashboard() {
                 cuur_user.manager_approval_resign ? (
                   <div>
                     <h2>Status</h2>
-                    <Bot />
+                    <Bot requestsArr={requestsArr} />
                   </div>
                 ) : (
                   <div>
@@ -342,7 +351,7 @@ export default function Dashboard() {
                       } else {
                         return (
                           <div key={eachRequest.id}>
-                           <></>
+                            <></>
                           </div>
                         );
                       }

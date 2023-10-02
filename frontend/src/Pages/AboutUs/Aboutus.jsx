@@ -3,8 +3,8 @@ import "./Aboutus.css";
 
 export default function Aboutus() {
   return (
-    <div className="container my-5 text-white">
-      <div className="row mb-5">
+    <div className=" px-5 py-5 text-white about_us_primary">
+      <div className="row pb-5">
         <div className="col-md-6">
           <h2>About Our HR Bot</h2>
           <p>

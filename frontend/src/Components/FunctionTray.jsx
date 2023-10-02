@@ -34,6 +34,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleSM = async (requester_id, request_id) => {
@@ -62,6 +63,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleAC = async (requester_id, request_id) => {
@@ -90,6 +92,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleMoney = async (requester_id, request_id) => {
@@ -118,6 +121,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   const handleBenifits = async (requester_id, request_id) => {
@@ -146,6 +150,7 @@ export default function FunctionTray({ requestsArr }) {
       `http://localhost:4000/resignation_requests/${request_id}`,
       request
     );
+    window.location.reload()
   };
 
   useEffect(() => {
@@ -165,7 +170,7 @@ export default function FunctionTray({ requestsArr }) {
       {requestsArr.map((each) => {
         if (each?.employeeID === cuur_user.employeeID) {
           return (
-            <div className="container">
+            <div key={each?.id} className="container">
               <div className="d-flex flex-wrap gap-2">
                 <button
                   onClick={() => handleSL(each?.requester?.id, each?.id)}
