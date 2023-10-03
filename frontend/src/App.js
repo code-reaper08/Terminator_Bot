@@ -11,6 +11,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Aboutus from "./Pages/AboutUs/Aboutus";
 import HomePage from "./Pages/HomePage/Home";
 import Footer from "./Pages/Footer/Footer";
+import { PrivateCertGuard } from "./Components/PrivateCertGuard";
+import CertificatePage from "./Pages/CertificateGen/CertificatePage";
 
 function App() {
   return (
@@ -41,6 +43,16 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            exact
+            path="/download_docs"
+            element={
+              <PrivateCertGuard>
+                <CertificatePage />
+              </PrivateCertGuard>
+            }
+          />
+
           <Route exact path="/aboutus" element={<Aboutus />} />
         </Routes>
         <Footer />

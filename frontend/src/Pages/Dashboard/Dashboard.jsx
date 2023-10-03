@@ -142,27 +142,15 @@ export default function Dashboard() {
       .catch((err) => console.log(err));
   };
 
-  // const handleBotInit = async () => {
-  //   const postBody = {
-  //     requester: cuur_user.employeeID,
-  //     process: [],
-  //   };
-  //   if (userData.hr_approval_resign && userData.manager_approval_resign) {
-  //     setCallBot(true);
-  //     console.log("Running")
-  //     await axios
-  //       .post("http://localhost:4000/bot", postBody)
-  //       .then((res) => console.log(res.data))
-  //       .catch((err) => console.log(err));
-  //   }
-  // };
-
   useEffect(() => {
     fetchAllRequests();
 
-    if (JSON.parse(localStorage.getItem("AllDone")) === true || cuur_user.resignation_status === true) {
+    if (
+      JSON.parse(localStorage.getItem("AllDone")) === true ||
+      cuur_user.resignation_status === true
+    ) {
       deleteRequestEntry();
-      console.log("Deleting request")
+      console.log("Deleting request");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -178,7 +166,7 @@ export default function Dashboard() {
   const deleteRequestEntry = async () => {
     console.log(requestsArr);
     requestsArr.map(async (each) => {
-      console.log("Each", each)
+      console.log("Each", each);
       if (each?.employeeID === cuur_user.employeeID) {
         await axios
           .delete(`http://localhost:4000/resignation_requests/${each?.id}`)
@@ -192,13 +180,6 @@ export default function Dashboard() {
     <div className="container-fluid primary-bg-dashboard ">
       <div className="row">
         <FunctionTray requestsArr={requestsArr} />
-        {/* {JSON.parse(localStorage.getItem("AllDone") === false) ? (
-          <FunctionTray requestsArr={requestsArr} />
-        ) : (
-          <></>
-        )} */}
-        {/* {JSON.parse(localStorage.getItem("AllDone") === true) ? <></> : ""} */}
-
         <div className="col-md-4 d-flex">
           <div className="p-3">
             <div className="container mt-5">
@@ -212,9 +193,13 @@ export default function Dashboard() {
                       <p>
                         <strong>First Name:</strong> {cuur_user.firstName}
                       </p>
-                      <p>
-                        <strong>Middle Name:</strong> {cuur_user.middleName}
-                      </p>
+                      {cuur_user.middleName ? (
+                        <p>
+                          <strong>Middle Name:</strong> {cuur_user.middleName}
+                        </p>
+                      ) : (
+                        <></>
+                      )}
                       <p>
                         <strong>Last Name:</strong> {cuur_user.lastName}
                       </p>
@@ -262,7 +247,9 @@ export default function Dashboard() {
         </div>
         <div className="col-md-8 d-flex justify-content-center">
           <div className="p-3">
-            {userData.access_role === "1" || userData.access_role === "2" || userData.access_role === "3" ? (
+            {userData.access_role === "1" ||
+            userData.access_role === "2" ||
+            userData.access_role === "3" ? (
               <div className="for_employee mt-5">
                 {cuur_user.hr_approval_resign ||
                 cuur_user.manager_approval_resign ? (

@@ -7,11 +7,22 @@
 
 body {
   /* background-color: #5a287d !important; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   /* color: white !important; */
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-weight: bolder !important;
 }
 
@@ -22,4 +33,10 @@ p {
 .ternary-bg {
   background-color: #5e10b1 !important;
   color: white !important;
+}
+
+.btn:hover {
+  background-color: #f2eaf9 !important;
+  color: #5a287d !important;
+  font-weight: bold;
 }
