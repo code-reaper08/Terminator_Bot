@@ -282,7 +282,10 @@ export default function Bot({ requestsArr }) {
             </Link>
           </div>
         ) : (
-          "10. Please wait, We are still working on it!"
+          <div>
+            <p>10. Please wait, We are still working on it!</p>
+            <p>Try ending the session by clicking <strong>Logout</strong> and re-login!</p>
+          </div>
         )}
       </div>
     </div>

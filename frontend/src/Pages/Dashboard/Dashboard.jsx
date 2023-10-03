@@ -165,9 +165,9 @@ export default function Dashboard() {
 
   const deleteRequestEntry = async () => {
     console.log(requestsArr);
-    requestsArr.map(async (each) => {
+    requestsArr?.map(async (each) => {
       console.log("Each", each);
-      if (each?.employeeID === cuur_user.employeeID) {
+      if (each?.employeeID === cuur_user?.employeeID) {
         await axios
           .delete(`http://localhost:4000/resignation_requests/${each?.id}`)
           .then((res) => console.log(res))

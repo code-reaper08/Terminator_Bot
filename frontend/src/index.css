@@ -38,5 +38,5 @@ p {
 .btn:hover {
   background-color: #f2eaf9 !important;
   color: #5a287d !important;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
