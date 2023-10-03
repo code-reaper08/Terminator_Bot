@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,7 +7,11 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setLoginStatus, syncWithLocalStorage, registerUser } from "../../features/register/RegisterSlice";
+import {
+  setLoginStatus,
+  syncWithLocalStorage,
+  registerUser,
+} from "../../features/register/RegisterSlice";
 
 export default function Login() {
   let navigate = useNavigate();
@@ -17,8 +21,8 @@ export default function Login() {
     if (localStorage.getItem("user")) {
       dispatch(syncWithLocalStorage(JSON.parse(localStorage.getItem("user"))));
     }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [formData, setFormData] = useState({
@@ -45,8 +49,8 @@ export default function Login() {
           alert("User Login Successfully");
           sessionStorage.setItem("user", JSON.stringify(user));
           sessionStorage.setItem("LoggedIn", true);
-          dispatch(registerUser(user))
-          dispatch(setLoginStatus(true))
+          dispatch(registerUser(user));
+          dispatch(setLoginStatus(true));
           navigate("/dashboard");
         } else {
           alert("Please Enter valid credentials");
@@ -58,59 +62,75 @@ export default function Login() {
   };
 
   return (
-    <div
-      className="wrapper d-flex align-items-center justify-content-center"
-      style={{ backgroundColor: "#5A287D" }}
-    >
-      <div className="login">
-        <div className="card">
-          <div className="card-header card-header-custom">
-            <h2 className="text-center">Login</h2>
-          </div>
-          <div className="card-body card-body-custom">
-            <form onSubmit={(e) => onSubmit(e)}>
-              {/* UserName */}
-              <div className="mb-3 form-group-left">
-                <label htmlFor="userName" className="form-label">
-                  UserName
-                  <span className="required-mark">*</span>
-                </label>
-                <input
-                  type={"text"}
-                  className="form-control"
-                  required
-                  placeholder="Enter the UserName"
-                  name="userName"
-                  value={userName}
-                  onChange={(e) => onInputChange(e)}
-                />
-              </div>
-              {/* Password */}
-              <div className="mb-3 form-group-left">
-                <label htmlFor="Password" className="form-label">
-                  Password
-                  <span className="required-mark">*</span>
-                </label>
-                <input
-                  type={"text"}
-                  className="form-control"
-                  required
-                  placeholder="Enter the Password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => onInputChange(e)}
-                />
-              </div>
-              <div className="form-group  mb-2">
-                <Link to="/resetPassword">Forgot password?</Link>
-              </div>
-              <button type="submit" className="btn btn-primary w-100">
-                Submit
-              </button>
-            </form>
+    <div>
+      {JSON.parse(localStorage.getItem("LoggedIn")) === true ? (
+        <div
+          className="wrapper d-flex align-items-center justify-content-center text-white"
+          style={{ backgroundColor: "#5A287D" }}
+        >
+          <div>
+            <h1>You are already logged in!</h1>
+            <br />
+            <br />
+            <p>Try to logout and re-login again</p>
           </div>
         </div>
-      </div>
+      ) : (
+        <div
+          className="wrapper d-flex align-items-center justify-content-center"
+          style={{ backgroundColor: "#5A287D" }}
+        >
+          <div className="login">
+            <div className="card">
+              <div className="card-header card-header-custom">
+                <h2 className="text-center">Login</h2>
+              </div>
+              <div className="card-body card-body-custom">
+                <form onSubmit={(e) => onSubmit(e)}>
+                  {/* UserName */}
+                  <div className="mb-3 form-group-left">
+                    <label htmlFor="userName" className="form-label">
+                      UserName
+                      <span className="required-mark">*</span>
+                    </label>
+                    <input
+                      type={"text"}
+                      className="form-control"
+                      required
+                      placeholder="Enter the UserName"
+                      name="userName"
+                      value={userName}
+                      onChange={(e) => onInputChange(e)}
+                    />
+                  </div>
+                  {/* Password */}
+                  <div className="mb-3 form-group-left">
+                    <label htmlFor="Password" className="form-label">
+                      Password
+                      <span className="required-mark">*</span>
+                    </label>
+                    <input
+                      type={"text"}
+                      className="form-control"
+                      required
+                      placeholder="Enter the Password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => onInputChange(e)}
+                    />
+                  </div>
+                  <div className="form-group  mb-2">
+                    <Link to="/resetPassword">Forgot password?</Link>
+                  </div>
+                  <button type="submit" className="btn btn-primary w-100">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
