@@ -1,0 +1,9 @@
+.nav-item {
+  padding: 0.1rem;
+  border-radius: 20px;
+}
+
+.nav-item:hover {
+ text-decoration: underline 2px white;
+ text-underline-offset: 0.5rem;
+}

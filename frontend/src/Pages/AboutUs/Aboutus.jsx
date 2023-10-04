@@ -41,7 +41,7 @@ export default function Aboutus() {
           <div className="card-container">
             <div className="card image-card secondary-bg">
               <img
-                src="https://img-getpocket.cdn.mozilla.net/filters:format(jpeg):quality(60):no_upscale():strip_exif()/https%3A%2F%2Fs3.us-east-1.amazonaws.com%2Fpocket-curatedcorpusapi-prod-images%2F2bbe0991-b2b1-451c-8473-c6257aee507e.jpeg"
+                src="https://ph-files.imgix.net/5a061ddb-b390-46e8-aa08-901d5c10ebf9.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&fit=max"
                 className="card-img-top"
                 alt="1"
               />
@@ -59,7 +59,7 @@ export default function Aboutus() {
           <div className="card-container">
             <div className="card image-card secondary-bg">
               <img
-                src="https://img-getpocket.cdn.mozilla.net/filters:format(jpeg):quality(60):no_upscale():strip_exif()/https%3A%2F%2Fs3.us-east-1.amazonaws.com%2Fpocket-curatedcorpusapi-prod-images%2F2bbe0991-b2b1-451c-8473-c6257aee507e.jpeg"
+                src="https://thinkimmigration.org/wp-content/uploads/2022/05/MicrosoftTeams-image-1.jpg"
                 className="card-img-top"
                 alt="2"
               />
@@ -77,7 +77,7 @@ export default function Aboutus() {
           <div className="card-container">
             <div className="card image-card secondary-bg">
               <img
-                src="https://img-getpocket.cdn.mozilla.net/filters:format(jpeg):quality(60):no_upscale():strip_exif()/https%3A%2F%2Fs3.us-east-1.amazonaws.com%2Fpocket-curatedcorpusapi-prod-images%2F2bbe0991-b2b1-451c-8473-c6257aee507e.jpeg"
+                src="https://www.datrick.com/wp-content/uploads/2023/04/datrick_An_image_with_purple_blue_and_dark_blue_colours_of_a_da_8ce39b1b-9f8b-4e39-aa2c-d44e253a15ad.png"
                 className="card-img-top"
                 alt="3"
               />

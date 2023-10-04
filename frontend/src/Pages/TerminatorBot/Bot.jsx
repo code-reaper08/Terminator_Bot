@@ -6,6 +6,7 @@ import {
   syncWithLocalStorage,
 } from "../../features/register/RegisterSlice";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Bot({ requestsArr }) {
   const cuur_user = JSON.parse(localStorage.getItem("user"));
@@ -113,45 +114,48 @@ export default function Bot({ requestsArr }) {
     }
   };
 
-  useEffect(() => {
-    if (
-      balanceMoney === 0 &&
-      balanceBenifits === 0 &&
-      submittedLaptop === true &&
-      submittedMobile === true &&
-      submittedAccess === true
-    ) {
-      setValidForResignation(true);
-    } else if (balanceMoney !== 0) {
-      setBalanceMoneyMsg("Please pay the balance money you owe          🟢");
-    } else if (balanceBenifits !== 0) {
-      setBalanceBenifitsMsg(
-        "Please surrender and make your benifits scheme clear           🟢"
-      );
-    } else if (submittedLaptop === false) {
-      setSubmittedLaptopMsg(
-        "Please surrender your company laptop           🟢"
-      );
-    } else if (submittedMobile === false) {
-      setSubmittedMobileMsg(
-        "Please surrender your company mobile           🟢"
-      );
-    } else if (submittedAccess === false) {
-      setSubmittedAccessMsg(
-        "Please place a request to surrender your access card           🟢"
-      );
-    } else {
-      validForResignation(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    // balanceBenifits,
-    // balanceMoney,
-    // submittedAccess,
-    // submittedLaptop,
-    // submittedMobile,
-    // cuur_user,
-  ]);
+  useEffect(
+    () => {
+      if (
+        balanceMoney === 0 &&
+        balanceBenifits === 0 &&
+        submittedLaptop === true &&
+        submittedMobile === true &&
+        submittedAccess === true
+      ) {
+        setValidForResignation(true);
+      } else if (balanceMoney !== 0) {
+        setBalanceMoneyMsg("Please pay the balance money you owe          🟢");
+      } else if (balanceBenifits !== 0) {
+        setBalanceBenifitsMsg(
+          "Please surrender and make your benifits scheme clear           🟢"
+        );
+      } else if (submittedLaptop === false) {
+        setSubmittedLaptopMsg(
+          "Please surrender your company laptop           🟢"
+        );
+      } else if (submittedMobile === false) {
+        setSubmittedMobileMsg(
+          "Please surrender your company mobile           🟢"
+        );
+      } else if (submittedAccess === false) {
+        setSubmittedAccessMsg(
+          "Please place a request to surrender your access card           🟢"
+        );
+      } else {
+        validForResignation(false);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [
+      // balanceBenifits,
+      // balanceMoney,
+      // submittedAccess,
+      // submittedLaptop,
+      // submittedMobile,
+      // cuur_user,
+    ]
+  );
 
   const bot_steps = [
     {
@@ -266,6 +270,23 @@ export default function Bot({ requestsArr }) {
         )
           ? "9. Generating Resignation letter and other documents            ✅"
           : "9. Please wait, we'll let you know if anything happens!"}
+      </div>
+
+      <div className="mb-5 ternary-bg p-3 rounded">
+        {JSON.parse(localStorage.getItem("AllDone")) === true &&
+        JSON.parse(localStorage.getItem("user")).resignation_status === true ? (
+          <div>
+            <p>10. Generation Successfull ✅</p>
+            <Link className="p-2 rounded secondary-bg" to={"/download_docs"}>
+              Click here to download your resignation letter
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <p>10. Please wait, We are still working on it!</p>
+            <p>Try ending the session by clicking <strong>Logout</strong> and re-login!</p>
+          </div>
+        )}
       </div>
     </div>
   );

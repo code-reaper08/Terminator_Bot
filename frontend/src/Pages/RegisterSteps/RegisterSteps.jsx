@@ -197,7 +197,7 @@ export default function RegisterSteps() {
         );
         formData.employeeID = generateEmployeeID();
         await axios.post("http://localhost:4000/users", formData);
-        alert("Registered Successfully!!");
+        alert(`Registered Successfully, your username is ${formData.userName}`);
         dispatch(registerUser(formData));
         navigate("/login");
       } catch (error) {

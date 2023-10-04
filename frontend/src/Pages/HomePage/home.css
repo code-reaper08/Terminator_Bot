@@ -48,3 +48,9 @@
     padding: 10px; 
     border-radius: 5px; 
   }
+
+  .second-bot {
+    width: 70%;
+    height: auto;
+    margin-left: 5rem;
+  }
