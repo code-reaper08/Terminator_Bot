@@ -25,7 +25,7 @@ public class PersonService
     }
     public Person getUser(int employeeID)
     {
-        return personRepository.findById(employeeID).get();
+        return personRepository.findById(employeeID).orElse(null);
 //        return personRepository.findById(id);
     }
 

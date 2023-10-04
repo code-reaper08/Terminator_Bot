@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 public class ResponseTemplateVO {
     private Resignation resignation;
     private Person person;
-
 }

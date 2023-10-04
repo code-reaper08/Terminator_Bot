@@ -55,7 +55,6 @@ public class Resignationservice {
             ResponseTemplateVO vo = new ResponseTemplateVO();
             vo.setResignation(resignation);
             vo.setPerson(restTemplate.getForObject("http://USER-SERVICE/person/" + resignation.getEmployeeID(), Person.class));
-
             responseList.add(vo);
         }
 

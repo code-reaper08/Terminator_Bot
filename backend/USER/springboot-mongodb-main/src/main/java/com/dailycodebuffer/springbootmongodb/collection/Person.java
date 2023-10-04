@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigInteger;
@@ -21,6 +22,7 @@ import java.util.List;
 public class Person {
 
     @Id
+    @Indexed(unique = true)
     private int employeeID;
     private String firstName;
     private String middleName;
@@ -28,8 +30,14 @@ public class Person {
     private String dob;
     private String gender;
     private String martialstatus;
+
+    @Indexed(unique = true)
     private String mobileNumber;
+
+    @Indexed(unique = true)
     private String email;
+
+    @Indexed(unique = true)
     private String aadharNumber;
     private String nationality;
     private String address;
