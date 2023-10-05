@@ -43,7 +43,7 @@ export default function Bot({ requestsArr }) {
 
   const fetchRecentData = async () => {
     await axios
-      .get(`http://localhost:4000/users/${cuur_user.id}`)
+      .get(`http://localhost:8081/person/${cuur_user.employeeID}`)
       .then((res) => {
         SetFinalUserData(res.data);
       })
@@ -85,15 +85,15 @@ export default function Bot({ requestsArr }) {
       );
       let payload = cuur_user;
       payload.resignation_status = true;
-      await axios
-        .post("http://localhost:4001/previous_users", payload)
-        .then(async (res) => {
-          console.log(res);
-        })
-        .catch((err) => console.log(err));
+      // await axios
+      //   .post("http://localhost:4001/previous_users", payload)
+      //   .then(async (res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((err) => console.log(err));
 
       await axios
-        .put(`http://localhost:4000/users/${cuur_user.id}`, payload)
+        .put(`http://localhost:8081/person/updateRequest/${cuur_user.employeeID}`, payload)
         .then(async (res) => {
           console.log(res);
         })
