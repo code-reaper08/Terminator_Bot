@@ -10,11 +10,11 @@ const CertificatePage = () => {
   const oneWeekAhead = new Date(currentDate);
   oneWeekAhead.setDate(oneWeekAhead.getDate() + 7);
 
-  const userID = JSON.parse(localStorage.getItem("user")).id;
+  const userID = JSON.parse(localStorage.getItem("user")).employeeID;
 
   const fetchUser = async () => {
     await axios
-      .get(`http://localhost:4000/users/${userID}`)
+      .get(`http://localhost:8081/person/${userID}`)
       .then((res) => {
         setEmployeeData(res.data);
       })
