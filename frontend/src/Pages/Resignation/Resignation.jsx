@@ -8,11 +8,18 @@ export default function Resignation() {
   let date = new Date().toLocaleDateString();
 
   const [formData, setFormData] = useState({
-    employeeID: "",
-    reason: "",
-    feedback: "",
-    timestamp: date,
-    requester: JSON.parse(localStorage.getItem("user"))
+    // employeeID: "",
+    // reason: "",
+    // feedback: "",
+    // timestamp: date,
+    // requester: JSON.parse(localStorage.getItem("user"))
+    resignation: {
+      employeeID: "",
+      feedback: "",
+      reason: "",
+      timestamp: date
+    },
+    person:  JSON.parse(localStorage.getItem("user"))
   });
 
   const [agreed, setAgreed] = useState(false);
@@ -43,11 +50,11 @@ export default function Resignation() {
         try {
           // Perform the final submission to the server
           if (
-            formData.employeeID ===
+            Number(formData.employeeID) ===
             JSON.parse(localStorage.getItem("user")).employeeID
           ) {
             await axios.post(
-              "http://localhost:4000/resignation_requests",
+              "http://localhost:8082/resign",
               formData
             );
             alert("Resignation request submitted");
@@ -166,7 +173,7 @@ export default function Resignation() {
                 </button>
                 <span className="mx-2"></span>
                 <button
-                disabled={formData.employeeID !==
+                disabled={Number(formData.employeeID) !==
                   JSON.parse(localStorage.getItem("user")).employeeID}
                   type="submit"
                   className="btn btn-primary"

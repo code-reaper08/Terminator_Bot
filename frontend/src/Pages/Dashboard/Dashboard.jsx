@@ -31,74 +31,73 @@ export default function Dashboard() {
   // FOR MANAGER - [ACCEPT]
   const handleApprovalAccept = async (requester_id, request_id) => {
     let result = {};
-    let request = {};
+    // let request = {};
     await axios
-      .get(`http://localhost:4000/users/${requester_id}`)
-      .then((res) => (result = res.data));
-    await axios
-      .get(`http://localhost:4000/resignation_requests/${request_id}`)
-      .then((res) => {
-        request = res.data;
-        console.log(res.data);
-      });
-
+      .get(`http://localhost:8081/person/${request_id}`)
+      .then((res) => (result = res.data)).catch((err) => console.log(err))
+    // await axios
+    //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
+    //   .then((res) => {
+    //     request = res.data;
+    //     console.log(res.data);
+    //   });
     result.manager_approval_resign = true;
-    request.requester.manager_approval_resign = true;
-    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
-    await axios.put(
-      `http://localhost:4000/resignation_requests/${request_id}`,
-      request
-    );
+    // request.requester.manager_approval_resign = true;
+    await axios.put(`http://localhost:8081/person/updateRequest/${request_id}`, result).then((res) => console.log(res.data)).catch((err) => console.log(err))
+    // await axios.put(
+    //   `http://localhost:4000/resignation_requests/${request_id}`,
+    //   request
+    // );
     setAcceptState(true);
   };
 
   // FOR HR - [ACCEPT]
   const handleApprovalAcceptHR = async (requester_id, request_id) => {
     let result = {};
-    let request = {};
+    // let request = {};
     await axios
-      .get(`http://localhost:4000/users/${requester_id}`)
-      .then((res) => (result = res.data));
-    await axios
-      .get(`http://localhost:4000/resignation_requests/${request_id}`)
-      .then((res) => {
-        request = res.data;
-        console.log(res.data);
-      });
+      .get(`http://localhost:8081/person/${requester_id}`)
+      .then((res) => (result = res.data)).catch((err) => console.log(err))
+    // await axios
+    //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
+    //   .then((res) => {
+    //     request = res.data;
+    //     console.log(res.data);
+    //   });
 
     result.hr_approval_resign = true;
-    request.requester.hr_approval_resign = true;
-    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
-    await axios.put(
-      `http://localhost:4000/resignation_requests/${request_id}`,
-      request
-    );
+    // request.requester.hr_approval_resign = true;
+    await axios.put(`http://localhost:8081/person/updateRequest/${requester_id}`, result).then((res) => console.log(res.data)).catch((err) => console.log(err));
+    // await axios.put(
+    //   `http://localhost:4000/resignation_requests/${request_id}`,
+    //   request
+    // );
     setAcceptState(true);
   };
 
   // FOR MANAGER - [REJECT]
   const handleApprovalReject = async (requester_id, request_id) => {
     let result = {};
-    let request = {};
+    // let request = {};
     await axios
-      .get(`http://localhost:4000/users/${requester_id}`)
+      .get(`http://localhost:8081/person/${requester_id}`)
       .then((res) => (result = res.data));
-    await axios
-      .get(`http://localhost:4000/resignation_requests/${request_id}`)
-      .then((res) => {
-        request = res.data;
-        console.log(res.data);
-      });
+    // await axios
+    //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
+    //   .then((res) => {
+    //     request = res.data;
+    //     console.log(res.data);
+    //   });
 
     result.manager_approval_resign = false;
-    request.requester.manager_approval_resign = false;
-    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
-    await axios.put(
-      `http://localhost:4000/resignation_requests/${request_id}`,
-      request
-    );
+    // request.requester.manager_approval_resign = false;
+    await axios.put(`http://localhost:8081/person/updateRequest/${requester_id}`, result).then((res) => console.log(res.data)).catch((err) => console.log(err));
+    // await axios.put(
+    //   `http://localhost:4000/resignation_requests/${request_id}`,
+    //   request
+    // );
     await axios
-      .delete(`http://localhost:4000/resignation_requests/${request_id}`)
+      .delete(`http://localhost:8082/resign/${request_id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setAcceptState(true);
@@ -107,26 +106,26 @@ export default function Dashboard() {
   // FOR HR - [REJECT]
   const handleApprovalRejectHR = async (requester_id, request_id) => {
     let result = {};
-    let request = {};
+    // let request = {};
     await axios
-      .get(`http://localhost:4000/users/${requester_id}`)
+      .get(`http://localhost:8081/person/${requester_id}`)
       .then((res) => (result = res.data));
-    await axios
-      .get(`http://localhost:4000/resignation_requests/${request_id}`)
-      .then((res) => {
-        request = res.data;
-        console.log(res.data);
-      });
+    // await axios
+    //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
+    //   .then((res) => {
+    //     request = res.data;
+    //     console.log(res.data);
+    //   });
 
     result.hr_approval_resign = false;
-    request.requester.hr_approval_resign = false;
-    await axios.put(`http://localhost:4000/users/${requester_id}`, result);
-    await axios.put(
-      `http://localhost:4000/resignation_requests/${request_id}`,
-      request
-    );
+    // request.requester.hr_approval_resign = false;
+    await axios.put(`http://localhost:8081/person/updateRequest/${requester_id}`, result).then((res) => console.log(res.data)).catch((err) => console.log(err));
+    // await axios.put(
+    //   `http://localhost:4000/resignation_requests/${request_id}`,
+    //   request
+    // );
     await axios
-      .delete(`http://localhost:4000/resignation_requests/${request_id}`)
+      .delete(`http://localhost:8082/resign/${request_id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setAcceptState(true);
@@ -134,7 +133,7 @@ export default function Dashboard() {
 
   const fetchAllRequests = async () => {
     await axios
-      .get("http://localhost:4000/resignation_requests")
+      .get("http://localhost:8082/resign/getAll/")
       .then((res) => {
         console.log(res.data);
         setRequestsArr(res.data);
@@ -288,9 +287,9 @@ export default function Dashboard() {
                     {requestsArr?.map((eachRequest) => {
                       if (
                         cuur_user.employeeID ===
-                          eachRequest?.requester?.line_manager_id &&
+                          Number(eachRequest?.person?.line_manager_id) &&
                         !acceptState &&
-                        !eachRequest?.requester?.manager_approval_resign
+                        !eachRequest?.person?.manager_approval_resign
                       ) {
                         return (
                           <li
@@ -299,24 +298,24 @@ export default function Dashboard() {
                           >
                             <p>
                               <strong>Requester:</strong>{" "}
-                              {eachRequest?.requester?.firstName +
+                              {eachRequest?.person?.firstName +
                                 " " +
-                                eachRequest?.requester?.lastName}
+                                eachRequest?.person?.lastName}
                             </p>
                             <p>
                               <strong>Employee ID:</strong>{" "}
-                              {eachRequest?.requester?.employeeID}
+                              {eachRequest?.person?.employeeID}
                             </p>
                             <p>
                               <strong>Requested at:</strong>{" "}
-                              {eachRequest?.timestamp}
+                              {eachRequest?.resignation?.timestamp}
                             </p>
                             <div className="btn-group" role="group">
                               <button
                                 onClick={() =>
                                   handleApprovalAccept(
-                                    eachRequest?.requester?.id,
-                                    eachRequest?.id
+                                    eachRequest?.person?.employeeID,
+                                    eachRequest?.resignation?.employeeID
                                   )
                                 }
                                 className="btn btn-success"
@@ -326,8 +325,8 @@ export default function Dashboard() {
                               <button
                                 onClick={() =>
                                   handleApprovalReject(
-                                    eachRequest?.requester?.id,
-                                    eachRequest?.id
+                                    eachRequest?.person?.employeeID,
+                                    eachRequest?.resignation?.employeeID
                                   )
                                 }
                                 className="btn btn-danger"
@@ -339,7 +338,7 @@ export default function Dashboard() {
                         );
                       } else {
                         return (
-                          <div key={eachRequest.id}>
+                          <div key={eachRequest.resignation.reason}>
                             <></>
                           </div>
                         );
@@ -365,9 +364,9 @@ export default function Dashboard() {
                     {requestsArr?.map((eachRequest) => {
                       if (
                         cuur_user.employeeID ===
-                          eachRequest?.requester?.bu_HR_id &&
+                          Number(eachRequest?.person?.bu_HR_id) &&
                         !acceptState &&
-                        !eachRequest?.requester?.hr_approval_resign
+                        !eachRequest?.person?.hr_approval_resign
                       ) {
                         return (
                           <li
@@ -376,24 +375,24 @@ export default function Dashboard() {
                           >
                             <p>
                               <strong>Requester:</strong>{" "}
-                              {eachRequest?.requester?.firstName +
+                              {eachRequest?.person?.firstName +
                                 " " +
-                                eachRequest?.requester?.lastName}
+                                eachRequest?.person?.lastName}
                             </p>
                             <p>
                               <strong>Employee ID:</strong>{" "}
-                              {eachRequest?.requester?.employeeID}
+                              {eachRequest?.person?.employeeID}
                             </p>
                             <p>
                               <strong>Requested at:</strong>{" "}
-                              {eachRequest?.timestamp}
+                              {eachRequest?.resignation?.timestamp}
                             </p>
                             <div className="btn-group" role="group">
                               <button
                                 onClick={() =>
                                   handleApprovalAcceptHR(
-                                    eachRequest?.requester?.id,
-                                    eachRequest?.id
+                                    eachRequest?.person?.employeeID,
+                                    eachRequest?.resignation?.employeeID
                                   )
                                 }
                                 className="btn btn-success"
@@ -403,8 +402,8 @@ export default function Dashboard() {
                               <button
                                 onClick={() =>
                                   handleApprovalRejectHR(
-                                    eachRequest?.requester?.id,
-                                    eachRequest?.id
+                                    eachRequest?.person?.employeeID,
+                                    eachRequest?.resignation?.employeeID
                                   )
                                 }
                                 className="btn btn-danger"
@@ -416,7 +415,7 @@ export default function Dashboard() {
                         );
                       } else {
                         return (
-                          <div key={eachRequest.id}>
+                          <div key={eachRequest.resignation.reason}>
                             <></>
                           </div>
                         );

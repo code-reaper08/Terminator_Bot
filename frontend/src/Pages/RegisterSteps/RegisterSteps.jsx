@@ -44,7 +44,7 @@ export default function RegisterSteps() {
     hr_approval_resign: false,
 
     // temp assign the below manager and HR
-    line_manager_id: "12345",
+    line_manager_id: "202325",
     bu_HR_id: "246810",
   });
 

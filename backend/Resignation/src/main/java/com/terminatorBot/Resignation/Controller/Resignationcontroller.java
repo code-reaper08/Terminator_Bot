@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/resign")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600, exposedHeaders = {"Access-Control-Allow-Origin"})
 public class Resignationcontroller {
     @Autowired
     Resignationservice resignationservice;

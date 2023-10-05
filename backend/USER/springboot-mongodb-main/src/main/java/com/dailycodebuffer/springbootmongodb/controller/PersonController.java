@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/person")
-@CrossOrigin("*")
+@CrossOrigin(origins = {"*"}, exposedHeaders = {"Access-Control-Allow-Origin"})
 
 public class PersonController {
 
