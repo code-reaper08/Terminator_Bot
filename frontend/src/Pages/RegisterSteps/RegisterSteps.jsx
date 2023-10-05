@@ -31,7 +31,7 @@ export default function RegisterSteps() {
     resume: "",
     photo: "",
     userName: "",
-    employeeID: "", // auto  |   Number
+    employeeID: 0, // auto  |   Number
     //join two fields [email(4char), Aadhar(4char)] String
     resignation_status: false, // Boolean (true only when the resignation_approval_count field s 2)
     balanceMoney: 0, // [0 to 50000]
@@ -62,7 +62,6 @@ export default function RegisterSteps() {
     const min = 100000;
     const max = 999999;
     let result = Math.floor(Math.random() * (max - min + 1)) + min;
-    result = result.toString();
     return result;
   };
 
@@ -196,7 +195,7 @@ export default function RegisterSteps() {
           formData.aadharNumber
         );
         formData.employeeID = generateEmployeeID();
-        await axios.post("http://localhost:4000/users", formData);
+        await axios.post("http://localhost:8081/person", formData);
         alert(`Registered Successfully, your username is ${formData.userName}`);
         dispatch(registerUser(formData));
         navigate("/login");
