@@ -163,12 +163,14 @@ export default function Dashboard() {
   }, []);
 
   const deleteRequestEntry = async () => {
-    console.log(requestsArr);
+    console.log("ARRY",requestsArr);
+
     requestsArr?.map(async (each) => {
       console.log("Each", each);
-      if (each?.employeeID === cuur_user?.employeeID) {
+      console.log("Valid or not",each?.person?.employeeID === cuur_user?.employeeID);
+      if (each?.person?.employeeID === cuur_user?.employeeID) {
         await axios
-          .delete(`http://localhost:4000/resignation_requests/${each?.id}`)
+          .delete(`http://localhost:8082/resign/${each?.person?.employeeID}`)
           .then((res) => console.log(res))
           .catch((err) => console.log(err));
       }

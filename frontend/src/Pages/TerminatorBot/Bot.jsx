@@ -85,12 +85,12 @@ export default function Bot({ requestsArr }) {
       );
       let payload = cuur_user;
       payload.resignation_status = true;
-      // await axios
-      //   .post("http://localhost:4001/previous_users", payload)
-      //   .then(async (res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => console.log(err));
+      await axios
+        .post("http://localhost:8083/prev_users", payload)
+        .then(async (res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
 
       await axios
         .put(`http://localhost:8081/person/updateRequest/${cuur_user.employeeID}`, payload)
