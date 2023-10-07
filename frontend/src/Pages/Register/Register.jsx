@@ -259,7 +259,6 @@ export default function Register() {
                                 Female
                             </label>
                         </div>
-
                     </div>
                     {/* Address */}
                     <div className='mb-3 form-group-left'>

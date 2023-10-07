@@ -125,6 +125,13 @@ export default function Login() {
                   <button type="submit" className="btn btn-primary w-100">
                     Submit
                   </button>
+                  {/* Registration Link */}
+                  <div className="mt-3">
+                    <p className="text-center">
+                      New User?{" "}
+                      <Link to="/register">Register here</Link>
+                    </p>
+                  </div>
                 </form>
               </div>
             </div>
@@ -133,4 +140,4 @@ export default function Login() {
       )}
     </div>
   );
-}
+}  
