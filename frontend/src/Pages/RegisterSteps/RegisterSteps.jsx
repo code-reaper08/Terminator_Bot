@@ -443,7 +443,7 @@ export default function RegisterSteps() {
             onChange={handleChange}
           />
         </div>
-        <button
+        {/* <button
           type="button"
           className="btn btn-outline-secondary"
           onClick={prevStep}
@@ -455,9 +455,29 @@ export default function RegisterSteps() {
           type="button"
           className="btn btn-outline-primary ternary-bg px-5"
           onClick={nextStep}
+          style={{ marginLeft: '10px' }} // Adjust the margin as needed
         >
           Next
-        </button>
+        </button> */}
+
+        <button
+  type="button"
+  className="btn btn-outline-secondary"
+  onClick={prevStep}
+>
+  Previous
+</button>
+<span className="button-space"></span>
+<button
+  type="button"
+  className="btn btn-outline-primary ternary-bg px-5"
+  onClick={nextStep}
+  style={{ marginLeft: '10px' }} // Adjust the margin as needed
+>
+  Next
+</button>
+
+
       </div>
     );
   };
@@ -560,20 +580,22 @@ export default function RegisterSteps() {
           />
         </div>
         <button
-          type="button"
-          className="btn btn-outline-secondary"
-          onClick={prevStep}
-        >
-          Previous
-        </button>
-        <span className="button-space"></span>
-        <button
-          type="button"
-          className="btn btn-outline-primary ternary-bg px-5"
-          onClick={submitForm}
-        >
-          Submit
-        </button>
+  type="button"
+  className="btn btn-outline-secondary"
+  onClick={prevStep}
+>
+  Previous
+</button>
+<span className="button-space"></span>
+<button
+  type="button"
+  className="btn btn-outline-primary ternary-bg px-5"
+  onClick={submitForm}
+  style={{ marginLeft: '10px' }} // Adjust the margin as needed
+>
+  Submit
+</button>
+
       </div>
     );
   };
