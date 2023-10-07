@@ -9,3 +9,11 @@
   .form-group-left {
     text-align: left;
   } 
+
+.inline-radio {
+  display: inline-block;
+  margin-right: 10px;
+}
+.form-check-label {
+  vertical-align: middle;
+}
