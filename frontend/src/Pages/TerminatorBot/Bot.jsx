@@ -43,7 +43,7 @@ export default function Bot({ requestsArr }) {
 
   const fetchRecentData = async () => {
     await axios
-      .get(`http://localhost:8081/person/${cuur_user.employeeID}`)
+      .get(`http://localhost:8084/person/${cuur_user.employeeID}`)
       .then((res) => {
         SetFinalUserData(res.data);
       })
@@ -86,7 +86,7 @@ export default function Bot({ requestsArr }) {
       let payload = cuur_user;
       payload.resignation_status = true;
       await axios
-        .post("http://localhost:8083/prev_users", payload)
+        .post("http://localhost:8084/prev_users", payload)
         .then(async (res) => {
           console.log(res);
         })

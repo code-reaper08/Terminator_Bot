@@ -38,7 +38,7 @@ export default function Login() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get("http://localhost:8081/person/");
+      const response = await axios.get("http://localhost:8084/person");
       console.log(response);
       const users = response.data;
       const user = users.find((u) => u.userName === userName);

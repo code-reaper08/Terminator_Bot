@@ -33,7 +33,7 @@ export default function Dashboard() {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${request_id}`)
+      .get(`http://localhost:8084/person/${request_id}`)
       .then((res) => (result = res.data)).catch((err) => console.log(err))
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -42,6 +42,7 @@ export default function Dashboard() {
     //     console.log(res.data);
     //   });
     result.manager_approval_resign = true;
+    console.log("RESULT MANAGER ACCEPT", result)
     // request.requester.manager_approval_resign = true;
     await axios.put(`http://localhost:8081/person/updateRequest/${request_id}`, result).then((res) => console.log(res.data)).catch((err) => console.log(err))
     // await axios.put(
@@ -56,7 +57,7 @@ export default function Dashboard() {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data)).catch((err) => console.log(err))
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -80,7 +81,7 @@ export default function Dashboard() {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -97,7 +98,7 @@ export default function Dashboard() {
     //   request
     // );
     await axios
-      .delete(`http://localhost:8082/resign/${request_id}`)
+      .delete(`http://localhost:8084/resign/${request_id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setAcceptState(true);
@@ -108,7 +109,7 @@ export default function Dashboard() {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -125,7 +126,7 @@ export default function Dashboard() {
     //   request
     // );
     await axios
-      .delete(`http://localhost:8082/resign/${request_id}`)
+      .delete(`http://localhost:8084/resign/${request_id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setAcceptState(true);
@@ -133,7 +134,7 @@ export default function Dashboard() {
 
   const fetchAllRequests = async () => {
     await axios
-      .get("http://localhost:8082/resign/getAll/")
+      .get("http://localhost:8084/resign/")
       .then((res) => {
         console.log(res.data);
         setRequestsArr(res.data);
@@ -170,7 +171,7 @@ export default function Dashboard() {
       console.log("Valid or not",each?.person?.employeeID === cuur_user?.employeeID);
       if (each?.person?.employeeID === cuur_user?.employeeID) {
         await axios
-          .delete(`http://localhost:8082/resign/${each?.person?.employeeID}`)
+          .delete(`http://localhost:8084/resign/${each?.person?.employeeID}`)
           .then((res) => console.log(res))
           .catch((err) => console.log(err));
       }

@@ -1,5 +1,6 @@
 server:
   port: 8084
+
 spring:
   application:
     name: API-GATEWAY
@@ -7,7 +8,7 @@ spring:
     gateway:
       routes:
         - id: USER-SERVICE
-          uri:  lb://USER-SERVICE
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/person/**
 
@@ -20,3 +21,15 @@ spring:
           uri: lb://MAINTENANCE-SERVICE
           predicates:
             - Path=/prev_users/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_FIRST
+
+
+globalcors:
+  add-to-simple-url-handler-mapping: true
+  corsConfigurations:
+    '[/**]':
+      allowedOrigins: "*"
+      allowedHeaders: "*"
+      allowedMethods: "*"
+      allowCredentials: true

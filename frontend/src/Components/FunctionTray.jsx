@@ -13,7 +13,7 @@ export default function FunctionTray({ requestsArr }) {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -41,7 +41,7 @@ export default function FunctionTray({ requestsArr }) {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -70,7 +70,7 @@ export default function FunctionTray({ requestsArr }) {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -99,7 +99,7 @@ export default function FunctionTray({ requestsArr }) {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
@@ -128,7 +128,7 @@ export default function FunctionTray({ requestsArr }) {
     let result = {};
     // let request = {};
     await axios
-      .get(`http://localhost:8081/person/${requester_id}`)
+      .get(`http://localhost:8084/person/${requester_id}`)
       .then((res) => (result = res.data));
     // await axios
     //   .get(`http://localhost:4000/resignation_requests/${request_id}`)
