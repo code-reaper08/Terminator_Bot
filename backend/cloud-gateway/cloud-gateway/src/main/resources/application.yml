@@ -1,0 +1,22 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri:  lb://USER-SERVICE
+          predicates:
+            - Path=/person/**
+
+        - id: RESIGNATION-SERVICE
+          uri: lb://RESIGNATION-SERVICE
+          predicates:
+            - Path=/resign/**
+
+        - id: MAINTENANCE-SERVICE
+          uri: lb://MAINTENANCE-SERVICE
+          predicates:
+            - Path=/prev_users/**
