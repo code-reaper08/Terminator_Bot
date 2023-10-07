@@ -23,7 +23,7 @@ public class Resignationcontroller {
 //        return resignationservice.getAllResignation();
 //    }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<ResponseTemplateVO> getResignationsByEmployee() {
         return resignationservice.getResignationsByEmployee();
     }

@@ -21,7 +21,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          {/* <Route exact path="/home"  /> */}
           <Route exact path="/register" element={<RegisterSteps />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path={"/resetPassword"} element={<ResetPassword />} />
