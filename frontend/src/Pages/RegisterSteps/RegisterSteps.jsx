@@ -268,11 +268,13 @@ export default function RegisterSteps() {
           />
         </div>
         {/* Gender */}
-        <div className="mb-3 form-group-left">
+        <div className="form-group-left">
           <label className="form-label">
             Gender <span className="required-mark">*</span>
           </label>
-          <div className="form-check">
+        </div>
+        <div className="mb-3 form-group-left">
+          <div className="form-check form-check-inline">
             <input
               type="radio"
               className="form-check-input"
@@ -286,7 +288,7 @@ export default function RegisterSteps() {
               Male
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline">
             <input
               type="radio"
               className="form-check-input"
@@ -301,12 +303,15 @@ export default function RegisterSteps() {
             </label>
           </div>
         </div>
+
         {/* Martial Status */}
-        <div className="mb-3 form-group-left">
+        <div className="form-group-left">
           <label className="form-label">
-            Martial Status <span className="required-mark">*</span>
+            Marital Status <span className="required-mark">*</span>
           </label>
-          <div className="form-check">
+        </div>
+        <div className="mb-3 form-group-left">
+          <div className="form-check form-check-inline">
             <input
               type="radio"
               className="form-check-input"
@@ -320,7 +325,7 @@ export default function RegisterSteps() {
               Married
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline">
             <input
               type="radio"
               className="form-check-input"
@@ -395,11 +400,12 @@ export default function RegisterSteps() {
           />
         </div>
         {/* Nationality */}
-        <div className="mb-3 form-group-left">
+       <div className="form-group-left">
           <label className="form-label">
             Nationality <span className="required-mark">*</span>
           </label>
-          <div className="form-check">
+      </div> 
+          <div className="form-check form-check-inline mb-3 form-group-left">
             <input
               type="radio"
               className="form-check-input"
@@ -413,7 +419,7 @@ export default function RegisterSteps() {
               India
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline mb-3 form-group-left">
             <input
               type="radio"
               className="form-check-input"
@@ -427,7 +433,7 @@ export default function RegisterSteps() {
               Others
             </label>
           </div>
-        </div>
+        
         {/* Address */}
         <div className="mb-3 form-group-left">
           <label htmlFor="Address" className="form-label">
