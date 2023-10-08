@@ -78,6 +78,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>maintenance-service</finalName>
 	</build>
 
 </project>
