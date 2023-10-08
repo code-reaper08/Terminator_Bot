@@ -1,0 +1,70 @@
+version: '3'
+services:
+  eureka-server:
+    build:
+      context: ./backend/service-registry/service-registry  # Directory containing Dockerfile for eureka-server
+    image: eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - capstone
+  cloud-config-server:
+    build:
+      context: ./backend/cloud-config-server/cloud-config-server  # Directory containing Dockerfile for cloud-config-server
+    image: cloud-config-server
+    container_name: cloud-config-server
+    ports:
+      - "9296:9296"
+    networks:
+      - capstone
+  cloud-gateway:
+    build:
+      context: ./backend/cloud-gateway/cloud-gateway  # Directory containing Dockerfile for cloud-gateway
+    image: cloud-gateway
+    container_name: cloud-gateway
+    ports:
+      - "8084:8084"
+    networks:
+      - capstone
+  user-service:
+    build:
+      context: ./backend/USER/springboot-mongodb-main  # Directory containing Dockerfile for user-service
+    image: user-service
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    networks:
+      - capstone
+  resignation-service:
+    build:
+      context: ./backend/Resignation  # Directory containing Dockerfile for resignation-service
+    image: resignation-service
+    container_name: resignation-service
+    ports:
+      - "8082:8082"
+    networks:
+      - capstone
+  maintenance-service:
+    build:
+      context: ./backend/Maintenance  # Directory containing Dockerfile for maintenance-service
+    image: maintenance-service
+    container_name: maintenance-service
+    ports:
+      - "8083:8083"
+    networks:
+      - capstone
+  frontend:
+    build:
+      context: ./frontend  # Directory containing Dockerfile for frontend
+    image: frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - capstone
+
+networks:
+  capstone:
+    external:
+      name: capstone
