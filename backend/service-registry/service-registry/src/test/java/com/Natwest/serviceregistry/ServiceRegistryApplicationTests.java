@@ -8,6 +8,6 @@ class ServiceRegistryApplicationTests {
 
 	@Test
 	void contextLoads() {
+		ServiceRegistryApplication.main(new String[] {});
 	}
-
 }
