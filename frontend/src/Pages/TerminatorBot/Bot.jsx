@@ -86,7 +86,7 @@ export default function Bot({ requestsArr }) {
       let payload = cuur_user;
       payload.resignation_status = true;
       await axios
-        .post("http://localhost:8084/prev_users", payload)
+        .post("http://localhost:8083/prev_users", payload)
         .then(async (res) => {
           console.log(res);
         })

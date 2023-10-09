@@ -1,0 +1,6 @@
+com/terminatorBot/Maintenance/Model/User$UserBuilder.class
+com/terminatorBot/Maintenance/Repository/UserRepository.class
+com/terminatorBot/Maintenance/Service/UserService.class
+com/terminatorBot/Maintenance/Model/User.class
+com/terminatorBot/Maintenance/Controller/UserController.class
+com/terminatorBot/Maintenance/MaintenanceApplication.class

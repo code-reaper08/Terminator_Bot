@@ -1,0 +1,39 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/person/**
+
+        - id: RESIGNATION-SERVICE
+          uri: lb://RESIGNATION-SERVICE
+          predicates:
+            - Path=/resign/**
+
+        - id: MAINTENANCE-SERVICE
+          uri: lb://MAINTENANCE-SERVICE
+          predicates:
+            - Path=/prev_users/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin, RETAIN_FIRST
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+
+globalcors:
+  add-to-simple-url-handler-mapping: true
+  corsConfigurations:
+    '[/**]':
+      allowedOrigins: "*"
+      allowedHeaders: "*"
+      allowedMethods: "*"
+      allowCredentials: true

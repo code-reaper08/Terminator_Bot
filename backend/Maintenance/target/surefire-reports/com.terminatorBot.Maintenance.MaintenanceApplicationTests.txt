@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.terminatorBot.Maintenance.MaintenanceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.626 s - in com.terminatorBot.Maintenance.MaintenanceApplicationTests

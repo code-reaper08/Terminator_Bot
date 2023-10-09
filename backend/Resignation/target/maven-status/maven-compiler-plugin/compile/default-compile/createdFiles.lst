@@ -1,0 +1,8 @@
+com/terminatorBot/Resignation/Model/Resignation.class
+com/terminatorBot/Resignation/VO/ResponseTemplateVO.class
+com/terminatorBot/Resignation/Model/Resignation$ResignationBuilder.class
+com/terminatorBot/Resignation/ResignationApplication.class
+com/terminatorBot/Resignation/Repository/Resignationrepo.class
+com/terminatorBot/Resignation/Service/Resignationservice.class
+com/terminatorBot/Resignation/VO/Person.class
+com/terminatorBot/Resignation/Controller/Resignationcontroller.class

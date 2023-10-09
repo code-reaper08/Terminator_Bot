@@ -1,0 +1,9 @@
+server :
+  port : 8082
+spring :
+  application :
+    name : RESIGNATION-SERVICE
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
