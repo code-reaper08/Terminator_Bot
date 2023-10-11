@@ -314,29 +314,29 @@ export default function Dashboard() {
                               {eachRequest?.resignation?.timestamp}
                             </p>
                             <div className="btn-group" role="group">
-                              <button
-                                onClick={() =>
-                                  handleApprovalAccept(
-                                    eachRequest?.person?.employeeID,
-                                    eachRequest?.resignation?.employeeID
-                                  )
-                                }
-                                className="btn btn-success"
-                              >
-                                Accept
-                              </button>
-                              <span className="button-space"></span>
-                              <button
-                                onClick={() =>
-                                  handleApprovalReject(
-                                    eachRequest?.person?.employeeID,
-                                    eachRequest?.resignation?.employeeID
-                                  )
-                                }
-                                className="btn btn-danger"
-                              >
-                                Reject
-                              </button>
+                            <button
+    onClick={() =>
+        handleApprovalAccept(
+            eachRequest?.person?.employeeID,
+            eachRequest?.resignation?.employeeID
+        )
+    }
+    className="btn btn-success"
+>
+    Accept
+</button>
+<span style={{ marginRight: '10px' }}></span> 
+<button
+    onClick={() =>
+        handleApprovalReject(
+            eachRequest?.person?.employeeID,
+            eachRequest?.resignation?.employeeID
+        )
+    }
+    className="btn btn-danger"
+>
+    Reject
+</button>
                             </div>
                           </li>
                         );
@@ -392,29 +392,29 @@ export default function Dashboard() {
                               {eachRequest?.resignation?.timestamp}
                             </p>
                             <div className="btn-group" role="group">
-                              <button
-                                onClick={() =>
-                                  handleApprovalAcceptHR(
-                                    eachRequest?.person?.employeeID,
-                                    eachRequest?.resignation?.employeeID
-                                  )
-                                }
-                                className="btn btn-success"
-                              >
-                                Accept
-                              </button>
-                              <span className="button-space"></span>
-                              <button
-                                onClick={() =>
-                                  handleApprovalRejectHR(
-                                    eachRequest?.person?.employeeID,
-                                    eachRequest?.resignation?.employeeID
-                                  )
-                                }
-                                className="btn btn-danger"
-                              >
-                                Reject
-                              </button>
+                            <button
+    onClick={() =>
+        handleApprovalAccept(
+            eachRequest?.person?.employeeID,
+            eachRequest?.resignation?.employeeID
+        )
+    }
+    className="btn btn-success"
+>
+    Accept
+</button>
+<span style={{ marginRight: '10px' }}></span> {/* This is an empty span for spacing */}
+<button
+    onClick={() =>
+        handleApprovalReject(
+            eachRequest?.person?.employeeID,
+            eachRequest?.resignation?.employeeID
+        )
+    }
+    className="btn btn-danger"
+>
+    Reject
+</button>
                             </div>
                           </li>
                         );
