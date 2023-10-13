@@ -325,7 +325,7 @@ export default function Dashboard() {
                               >
                                 Accept
                               </button>
-                              <span className="button-space"></span>
+                              <span style={{ marginRight: '10px' }}></span>
                               <button
                                 onClick={() =>
                                   handleApprovalReject(
@@ -403,7 +403,7 @@ export default function Dashboard() {
                               >
                                 Accept
                               </button>
-                              <span className="button-space"></span>
+                              <span style={{ marginRight: '10px' }}></span>
                               <button
                                 onClick={() =>
                                   handleApprovalRejectHR(
